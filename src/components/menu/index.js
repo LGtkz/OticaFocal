@@ -19,6 +19,11 @@ export function Menu() {
                         Produtos
                     </Link>
                 </li>
+                <li>
+                    <Link href='/ordem-servico'>
+                        Ordem de serviço
+                    </Link>
+                </li>
             </ul>
         </nav>
     )
