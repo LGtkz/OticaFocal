@@ -84,7 +84,7 @@ export function Menu() {
                     </Link>
                 </li>
                 <li>
-                    
+
                     <Image
                         src="/sairIcon.svg"
                         alt="Ícone de Sair"
@@ -97,5 +97,6 @@ export function Menu() {
                 </li>
             </ul>
         </nav>
+        
     )
 }

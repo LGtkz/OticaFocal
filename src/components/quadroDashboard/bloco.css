@@ -1,0 +1,17 @@
+.bloco{
+    display: flex;
+    width: 600px;
+    height: 300px;
+    background-color: #00CAF8;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.bloco h1{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 2rem;
+}

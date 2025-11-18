@@ -1,6 +1,7 @@
 nav{
     background-color: #00CAF8;
-    max-width: 275px;
+    width: 275px;
+    flex-shrink: 0;
     height: 100vh;
     display: flex;
 }

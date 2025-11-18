@@ -1,0 +1,60 @@
+div{
+    background-color: #ffff;
+    height: 60px;
+    align-items: center;
+    text-align: center;
+}
+
+.header{
+    width: 100%;
+    height: 60px;
+    min-height: 60px;
+    display: flex;
+    padding: 5px 20px;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+    background-color: #ffff;
+}
+
+p{
+    color: black;
+}
+
+.icones{
+    display: flex;
+    gap: 32px;
+    margin: 0 2rem;
+}
+
+#nomeUsuario{
+    color: #00CAF8;
+    font-size: 18px;
+}
+
+#perfil{
+    font-size: 12px;
+    text-align: left;
+    font-weight: 100;
+    color: #3d3d3d;
+}
+
+.inforUsuario{
+    display: flex;
+    margin: 0 2rem;
+}
+
+.fotoUsuario{
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.nomeUsuario{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+}
