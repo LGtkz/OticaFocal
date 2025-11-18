@@ -1,0 +1,21 @@
+nav{
+    background-color: #00CAF8;
+    max-width: 275px;
+    height: 100vh;
+    display: flex;
+}
+
+nav, ul{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px;
+    gap: 30px;
+    list-style: none;
+}
+
+nav ul li a{
+    text-decoration: none;
+    font-size: 18px;
+    color: #ffff;
+    padding: 10px;
+}
