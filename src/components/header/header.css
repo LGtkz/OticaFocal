@@ -1,5 +1,5 @@
 div{
-    background-color: #ffff;
+    background-color: var(--cor-background);
     height: 60px;
     align-items: center;
     text-align: center;
@@ -15,7 +15,7 @@ div{
     justify-content: space-between;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     flex-shrink: 0;
-    background-color: #ffff;
+    background-color: var(--cor-background);
 }
 
 p{
@@ -29,7 +29,7 @@ p{
 }
 
 #nomeUsuario{
-    color: #00CAF8;
+    color: var(--cor-primaria);
     font-size: 18px;
 }
 

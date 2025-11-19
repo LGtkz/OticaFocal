@@ -1,5 +1,5 @@
 nav{
-    background-color: #00CAF8;
+    background-color: var(--cor-primaria);
     width: 275px;
     flex-shrink: 0;
     height: 100vh;
