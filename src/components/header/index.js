@@ -1,7 +1,12 @@
+"use client";
+
 import Image from 'next/image';
 import './header.css';
+import { useRouter } from "next/navigation";
 
 export function Header() {
+
+const router = useRouter();
     return (
         <div className='header'>
             <div className='icones'>
@@ -10,6 +15,8 @@ export function Header() {
                     alt="Ícone de Voltar"
                     width={32}
                     height={32}
+                    onClick={() => router.back()}
+                    style={{ cursor: 'pointer' }}
                 />
                 <Image
                     src="/dinheiroIcon.svg"
