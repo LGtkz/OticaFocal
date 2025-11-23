@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+    border-radius: 4px;
 }
 
 .bloco-acesso > div {
@@ -15,11 +16,12 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: 200px;
+    width: 180px;
     font-weight: 200;
     height: 134px;
     background-color: var(--cor-primaria);
     color: white;
+    border-radius: 4px;
 }
 
 .bloco-vendas {
@@ -28,11 +30,12 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: 200px;
+    width: 180px;
     font-weight: 200;
     height: 134px;
     background-color: var(--cor-primaria);
     color: white;
+    border-radius: 4px;
 }
 
 .bloco-produtos {
@@ -42,11 +45,12 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 8px;
-    width: 200px;
+    width: 180px;
     font-weight: 200;
     height: 134px;
     background-color: var(--cor-primaria);
     color: white;
+    border-radius: 4px;
 }
 
 .bloco-ordem-servico {
@@ -55,11 +59,12 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: 200px;
+    width: 180px;
     font-weight: 200;
     height: 134px;
     background-color: var(--cor-primaria);
     color: white;
+    border-radius: 4px;
 }   
 
 p{
