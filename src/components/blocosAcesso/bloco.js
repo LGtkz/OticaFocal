@@ -33,14 +33,16 @@ export default function BlocoAcesso() {
             </div>
             <div className="bloco-vendas">
                 <Image
-                    src="/vendasIcon.svg"
-                    alt="Ícone de Vendas"
+                    src="/entregasIcon.svg"
+                    alt="Ícone de entregas"
                     width={32}
                     height={32}
                 />
-                <p>Vendas</p>
+                <p>Entregas Pendentes</p>
             </div>
             
         </div>
     )
 }
+
+

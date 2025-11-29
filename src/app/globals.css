@@ -8,11 +8,17 @@
   font-optical-sizing: auto;
 }
 
+:root{
+  --cor-primaria: #2B3345;
+  --cor-texto: #ffff;
+  --cor-background: #F4F4F4;
+}
+
 body{
   display: flex;
   flex-direction: row;
-  background-color: var(--bg-color);
-  color: var(--secondary-color);
+  background-color: #F4F4F4;
+  color: black;
   height: 100vh;
   overflow: hidden;
 }

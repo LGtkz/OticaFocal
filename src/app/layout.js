@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Menu />
         <div className="main-content">
-          <Header />
+          <Header /> 
           <main className="content-area">
             {children}
           </main>

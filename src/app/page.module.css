@@ -7,6 +7,7 @@
   align-items: flex-start;
 }
 
+<<<<<<< HEAD
 .main-1 {
   display: flex;
   flex-direction: row;
@@ -14,4 +15,15 @@
   gap: 20px;
   flex-wrap: nowrap;
   align-items: flex-start;
+=======
+.line2 {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  width: 100%;
+
+  margin-top: 110px;
+  padding-left: 3px;
+   padding-right: 35px;
+>>>>>>> refs/remotes/origin/main
 }

@@ -1,0 +1,7 @@
+.bloco-inferior-container {
+    display: flex; 
+    justify-content: space-between; 
+    flex-wrap: wrap;    
+    margin-top: 150px;     
+    width: 100%; 
+}

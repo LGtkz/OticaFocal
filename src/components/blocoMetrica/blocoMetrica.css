@@ -1,0 +1,48 @@
+.bloco-metrica {
+    background-color: white; 
+    border-radius: 6px;
+    padding: 20px;
+    margin: 20px;
+    flex: 1 1 30%;
+    color:#333;
+    min-height: 220px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.metrica-header {
+    display: flex;
+    justify-content: space-between; 
+    width: 100%; 
+    align-items: center; 
+    margin-bottom: 10px; 
+}
+
+.metrica-titulo {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.metrica-status {
+    font-size: 15px;
+    color: #666;
+    margin: 0;
+}
+
+.metrica-conteudo {
+    font-size: 25px;
+    margin: 10px 0 0 0;
+    text-align: center;
+    color: #666;
+    width: 100%;  
+}
+
+.metrica-recado {
+    font-size: 20px; 
+    color: #999; 
+    text-align: center; 
+    width: 100%;
+    margin-top: 10px; 
+}

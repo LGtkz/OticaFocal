@@ -15,11 +15,16 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: 200px;
+    width: 180px;
     font-weight: 200;
     height: 134px;
     background-color: var(--cor-primaria);
+<<<<<<< HEAD
     color: var(--text-color);
+=======
+    color: white;
+    border-radius: 4px;
+>>>>>>> refs/remotes/origin/main
 }
 
 .bloco-vendas {
@@ -28,11 +33,16 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: 200px;
+    width: 180px;
     font-weight: 200;
     height: 134px;
     background-color: var(--cor-primaria);
+<<<<<<< HEAD
     color: var(--text-color);
+=======
+    color: white;
+    border-radius: 4px;
+>>>>>>> refs/remotes/origin/main
 }
 
 .bloco-produtos {
@@ -42,11 +52,16 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 8px;
-    width: 200px;
+    width: 180px;
     font-weight: 200;
     height: 134px;
     background-color: var(--cor-primaria);
+<<<<<<< HEAD
     color: var(--text-color);
+=======
+    color: white;
+    border-radius: 4px;
+>>>>>>> refs/remotes/origin/main
 }
 
 .bloco-ordem-servico {
@@ -55,11 +70,16 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: 200px;
+    width: 180px;
     font-weight: 200;
     height: 134px;
     background-color: var(--cor-primaria);
+<<<<<<< HEAD
     color: var(--text-color);
+=======
+    color: white;
+    border-radius: 4px;
+>>>>>>> refs/remotes/origin/main
 }   
 
 p{
