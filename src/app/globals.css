@@ -11,8 +11,8 @@
 body{
   display: flex;
   flex-direction: row;
-  background-color: #F4F4F4;
-  color: black;
+  background-color: var(--bg-color);
+  color: var(--secondary-color);
   height: 100vh;
   overflow: hidden;
 }

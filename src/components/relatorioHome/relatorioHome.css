@@ -1,0 +1,13 @@
+.relatorio-container {
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: var(--cor-primaria);
+    color: var(--text-color);
+    min-height: 200px;
+}
+
+.relatorio-container h2 {
+    margin: 0;
+    padding: 0;
+}

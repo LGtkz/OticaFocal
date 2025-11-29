@@ -18,8 +18,8 @@
     width: 200px;
     font-weight: 200;
     height: 134px;
-    background-color: #00CAF8;
-    color: white;
+    background-color: var(--cor-primaria);
+    color: var(--text-color);
 }
 
 .bloco-vendas {
@@ -31,8 +31,8 @@
     width: 200px;
     font-weight: 200;
     height: 134px;
-    background-color: #00CAF8;
-    color: white;
+    background-color: var(--cor-primaria);
+    color: var(--text-color);
 }
 
 .bloco-produtos {
@@ -45,8 +45,8 @@
     width: 200px;
     font-weight: 200;
     height: 134px;
-    background-color: #00CAF8;
-    color: white;
+    background-color: var(--cor-primaria);
+    color: var(--text-color);
 }
 
 .bloco-ordem-servico {
@@ -58,12 +58,12 @@
     width: 200px;
     font-weight: 200;
     height: 134px;
-    background-color: #00CAF8;
-    color: white;
+    background-color: var(--cor-primaria);
+    color: var(--text-color);
 }   
 
 p{
-    color: white;
+    color: var(--text-color);
     font-size: 18px;
     font-weight: 400;
 }
