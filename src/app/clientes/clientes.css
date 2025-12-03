@@ -9,7 +9,7 @@
     background-color: white;
     padding-left: 2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    
+
 
 }
 
@@ -71,14 +71,84 @@
     border-radius: 4px;
     padding: 6px 10px;
     background-color: white;
-    
+
 }
 
 .input-busca input {
     width: 1400px;
     border: none;
     outline: none;
-   background-color: white;
+    background-color: white;
 
 }
 
+
+.clientes-lista-container {
+    width: 1500px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+
+}
+
+.contador-clientes {
+    color: #666;
+    font-size: 14px;
+    margin-left: 30px;
+
+}
+
+.cliente-card {
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 30px;
+    border: 1px solid #e0e0e0;
+    border-left: 10px solid var(--cor-primaria);
+    height: 100px;
+    width: 1500px;
+}
+
+.cliente-info-principal h2 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.cliente-info-principal p {
+    font-size: 12px;
+    color: #888;
+}
+
+.cliente-info-secundaria {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cliente-info-secundaria p {
+    font-size: 12px;
+    color: #666;
+}
+
+.btn-receita {
+    background-color: var(--cor-primaria);
+    color: white;
+    padding: 10px 32px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-right: 80px;
+
+}
+
+.btn-receita:hover {
+    opacity: 0.9;
+}
