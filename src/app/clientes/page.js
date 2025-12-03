@@ -1,4 +1,5 @@
 import './clientes.css';
+import Link from 'next/link';
 import Image from "next/image";
 import { Inter } from "next/font/google";
 
@@ -26,7 +27,9 @@ export default function Clientes() {
 
             <div className="clientes-box">
 
-                <   button className="btn-novo-cliente">Novo cliente +</button>
+                <Link href="/clientes/novo">
+                    <button className="btn-novo-cliente">Novo cliente +</button>
+                </Link>
 
                 <label className="label-buscar">Buscar cliente</label>
 
