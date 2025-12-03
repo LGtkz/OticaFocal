@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+    border-radius: 4px;
 }
 
 .bloco-acesso > div {
@@ -19,12 +20,8 @@
     font-weight: 200;
     height: 134px;
     background-color: var(--cor-primaria);
-<<<<<<< HEAD
-    color: var(--text-color);
-=======
     color: white;
     border-radius: 4px;
->>>>>>> refs/remotes/origin/main
 }
 
 .bloco-vendas {
@@ -37,12 +34,8 @@
     font-weight: 200;
     height: 134px;
     background-color: var(--cor-primaria);
-<<<<<<< HEAD
-    color: var(--text-color);
-=======
     color: white;
     border-radius: 4px;
->>>>>>> refs/remotes/origin/main
 }
 
 .bloco-produtos {
@@ -56,12 +49,8 @@
     font-weight: 200;
     height: 134px;
     background-color: var(--cor-primaria);
-<<<<<<< HEAD
-    color: var(--text-color);
-=======
     color: white;
     border-radius: 4px;
->>>>>>> refs/remotes/origin/main
 }
 
 .bloco-ordem-servico {
@@ -74,12 +63,8 @@
     font-weight: 200;
     height: 134px;
     background-color: var(--cor-primaria);
-<<<<<<< HEAD
-    color: var(--text-color);
-=======
     color: white;
     border-radius: 4px;
->>>>>>> refs/remotes/origin/main
 }   
 
 p{

@@ -12,13 +12,13 @@
   --cor-primaria: #2B3345;
   --cor-texto: #ffff;
   --cor-background: #F4F4F4;
+  --text-color: #ffffff;
 }
 
 body{
   display: flex;
   flex-direction: row;
   background-color: #F4F4F4;
-  color: black;
   height: 100vh;
   overflow: hidden;
 }

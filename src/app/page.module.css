@@ -3,19 +3,11 @@
   flex-direction: row;
   margin: 0 auto;
   gap: 20px;
-  flex-wrap: nowrap;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+   padding-left: 30px;
 }
 
-<<<<<<< HEAD
-.main-1 {
-  display: flex;
-  flex-direction: row;
-  margin: 0 auto;
-  gap: 20px;
-  flex-wrap: nowrap;
-  align-items: flex-start;
-=======
 .line2 {
   display: flex;
   gap: 20px;
@@ -25,5 +17,4 @@
   margin-top: 110px;
   padding-left: 3px;
    padding-right: 35px;
->>>>>>> refs/remotes/origin/main
 }
