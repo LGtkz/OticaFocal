@@ -1,11 +1,11 @@
 .bloco-vendas-container {
   flex: 1;
-  min-width: 700px;
+  max-width: 525px;
   height: 300px;
   background-color: var(--cor-primaria);
   border-radius: 6px;
   text-align: center;
-  color: white;
+  color: var(--cor-background);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -20,7 +20,7 @@
   margin-top: -20px;
   background: transparent;
   padding: 5x;
-  color: white;
+  color: var(--cor-background);
   width: fit-content;
   margin-left: auto;
   margin-right: auto;

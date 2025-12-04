@@ -17,6 +17,6 @@ nav, ul{
 nav ul li a{
     text-decoration: none;
     font-size: 18px;
-    color: var(--text-color);
+    color: #ffff;
     padding: 10px;
 }
