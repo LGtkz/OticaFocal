@@ -1,0 +1,195 @@
+/* --- RESET E ESTRUTURA GERAL --- */
+.page-produto-wrapper {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Empilha os blocos verticalmente */
+    gap: 25px; /* Espaço cinza entre os blocos brancos */
+    box-sizing: border-box;
+    background-color: #f5f6fa; /* Cor de fundo cinza claro da página */
+}
+
+/* --- ESTILO DOS BLOCOS BRANCOS (CARDS) --- */
+/* Esta classe substitui o antigo form-container */
+.card-branco {
+    background-color: white;
+    width: 100%;
+    padding: 30px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaço entre as linhas de input dentro do card */
+    box-sizing: border-box;
+    
+    /* O MAIS IMPORTANTE: Altura automática para não encavalar */
+    height: auto; 
+}
+
+/* Título do Card */
+.card-branco h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #444;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Header (Aquele bloco que só tem o título "Novo Produto") */
+.header-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.header-top h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #333;
+    margin: 0;
+}
+
+/* --- LINHAS E INPUTS --- */
+.form-linha {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: flex-end; /* Alinha tudo pela base */
+    flex-wrap: wrap; /* Segurança para telas menores */
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+}
+
+.input-group input,
+.input-group select {
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    color: #333;
+}
+
+/* LARGURAS ESPECÍFICAS (Baseado no seu print) */
+.col-full   { flex: 1; }          /* Ocupa o espaço que sobrar */
+.col-metade { width: 48%; }
+.col-curta  { width: 150px; }
+.col-media  { width: 250px; }
+
+/* Botão "+" Preto ao lado do select */
+.select-com-botao {
+    display: flex;
+    gap: 0; /* Coladinho */
+}
+.select-com-botao select {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    flex: 1;
+}
+.btn-adicionar {
+    width: 40px;
+    height: 40px;
+    background-color: #222; /* Preto conforme print */
+    color: white;
+    border: none;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- TABELA DE PREÇO --- */
+.tabela-custom {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.tabela-custom th {
+    background-color: #1f2937; /* Cabeçalho Escuro */
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.tabela-custom td {
+    padding: 15px;
+    background: white;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+/* Inputs de moeda dentro da tabela */
+.input-moeda {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0 8px;
+    height: 35px;
+    width: 120px;
+}
+.simbolo { margin-right: 5px; color: #666; font-size: 12px; }
+.input-sem-borda { border: none; outline: none; width: 100%; font-size: 13px; }
+
+/* --- UPLOAD IMAGEM --- */
+.area-upload {
+    width: 200px;
+    height: 180px;
+    border: 2px dashed #bbb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #777;
+    cursor: pointer;
+    border-radius: 4px;
+    background: #fafafa;
+}
+
+/* --- BOTÕES FINAIS --- */
+.area-botoes {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.btn-salvar-final {
+    background-color: #2c3e50; /* Azul escuro */
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-cancelar-final {
+    background-color: #922b21; /* Vermelho escuro */
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
