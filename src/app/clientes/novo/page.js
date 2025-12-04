@@ -95,6 +95,67 @@ export default function NovoCliente() {
                     </div>
                 </div>
             </div>
+            <div className="form-container">
+                <h2>Endereço</h2>
+                <div className="form-content-full">
+                    <div className="form-row">
+                        <div className="form-group" style={{ flex: 1 }}>
+                            <label>CEP</label>
+                            <input type="text" className="input-cep" />
+                        </div>
+                        <div className="form-group" style={{ flex: 3 }}>
+                            <label>Endereço</label>
+                            <input type="text" className="input-endereco" />
+                        </div>
+                        <div className="form-group" style={{ flex: 1 }}>
+                            <label>Número</label>
+                            <input type="text" className="input-numero" />
+                        </div>
+                    </div>
+
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label>Bairro</label>
+                            <input type="text" className="input-bairro" />
+                        </div>
+                        <div className="form-group">
+                            <label>Estado</label>
+                            <input type="text" className="input-estado" />
+                        </div>
+                        <div className="form-group">
+                            <label>Cidade</label>
+                            <input type="text" className="input-cidade" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="form-container">
+                <h2>Informações de contato</h2>
+                <div className="form-content-full">
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label>Celular*</label>
+                            <input type="text" className="input-celular" />
+                        </div>
+                        <div className="form-group">
+                            <label>Telefone*</label>
+                            <input type="text" className="input-telefone" />
+                        </div>
+                        <div className="form-group" style={{ flex: 2 }}>
+                            <label>Email</label>
+                            <input type="email" className="input-email" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="botoes-container">
+                <button class="btn-acao btn-cancelar">Cancelar</button>
+                <button class="btn-acao btn-salvar">Salvar</button>
+            </div>
         </div>
     );
 }
+

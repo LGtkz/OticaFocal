@@ -29,7 +29,7 @@
     width: 1500px;
     height: 220px;
     background: white;
-    margin: 20px 0;
+    margin: 40px 0;
     border-radius: 4px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     display: flex;
@@ -139,4 +139,36 @@
     margin-right: 20px;
     text-align: left;
     width: auto;
+}
+
+
+.actions-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 40px; 
+}
+
+.btn-acao {
+    width: 200px;       
+    height: 50px;       
+    font-size: 18px;    
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-salvar {
+    background-color: var(--cor-primaria, #1081fa); 
+    color: white;
+}
+
+.btn-cancelar {
+    background-color: #d81c1c;
+    color:  white;
+    margin-right: 15px; /* Espaço entre os botões */
+}
+.form-content-full {
+    padding: 20px;
 }
