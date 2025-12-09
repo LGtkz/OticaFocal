@@ -115,7 +115,10 @@ app.delete('/:tabela/:id', validarTabela, async (req, res) => {
 });
 
 // servidor on fire mlk 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
-}); 
+module.exports = app; // Exportamos o app para os testes usarem
+if (require.main === module) {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`Servidor rodando na porta ${PORT}`);
+    });
+}
