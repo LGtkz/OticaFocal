@@ -1,6 +1,6 @@
 .bloco-vendas-container {
   flex: 1;
-  max-width: 525px;
+  max-width: 795px;
   height: 300px;
   background-color: var(--cor-primaria);
   border-radius: 6px;
