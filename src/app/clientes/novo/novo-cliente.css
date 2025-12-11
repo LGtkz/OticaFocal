@@ -1,186 +1,297 @@
-.clientes-page {
-    width: calc(100vw - 275px);
-    max-width: 96%;
+.novo-cliente-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    height: fit-content;
-    gap: 20px;
-    box-shadow: 0 4px 6px #0003;
-    margin: auto;
-    margin-top: 20px;
-    padding: 0rem 3rem;
-    height: 80px;
-    color: var(--cor-primaria);
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 50px;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
 }
 
-.form-cliente {
-    max-width: 96%;
-    height: 100vh;
-    width: calc(100vw - 275px);
-    padding: 1rem 2rem;
-    max-width: 96%;
-    margin: 2rem auto;
-    margin-bottom: 4rem;
-    box-shadow: 0 4px 6px #0003;
-}
-
-.form-grupo {
+.titulo-clientes {
+    width: 100%;
+    max-width: 1400px;
+    height: 100px;
     display: flex;
-    width: calc(100vw - 275px);
-    max-width: 96%;
-    flex-direction: row;
-    gap: 1rem;
-    margin: 1rem 2rem;
-    height: auto;
+    align-items: center;
     justify-content: flex-start;
-    align-items: flex-start;
+    gap: 1.2rem;
+    background-color: white;
+    padding-left: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin: 0 auto 40px auto;
+
+    box-sizing: border-box;
+    flex-shrink: 0;
+
 }
 
-.input-imagem {
+.titulo-clientes h1 {
+    color: var(--cor-primaria, #333);
+
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0;
+}
+
+.nc-section-title {
+    font-size: 35px;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: 100%;
+}
+
+.nc-content-wrapper {
+    display: flex;
+    gap: 60px;
+    width: 100%;
+    align-items: flex-start;
+    min-height: 320px;
+
+    height: auto;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.nc-image-col {
+    flex-shrink: 0;
+    width: 300px;
+}
+
+.nc-image-upload {
+    width: 100%;
+    height: 300px;
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    text-align: left;
-    height: fit-content;
-}
-
-input[type="file"] {
-    height: auto;
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-}
-
-.input-imagem-label {
-    /* 1. Ativa o Flexbox (Container Flexível) */
-    display: flex; 
-
-    /* 2. Centraliza o conteúdo HORIZONTALMENTE */
-    justify-content: center; 
-    
-    /* 3. Centraliza o conteúdo VERTICALMENTE */
-    align-items: center;    
-    
-    /* 4. Centraliza o TEXTO dentro do item (boa prática) */
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    
-    /* Outras propriedades existentes: */
-    text-wrap: wrap;
-    width: 150px;
-    padding: 10px 15px;
-    height: 150px;
-    border-radius: 5px;
-    border: 1px solid var(--cor-primaria);
+    color: #383b41;
     cursor: pointer;
-    align-self: center; 
+    background-color: #faf8f8;
+    padding: 20px;
+    font-size: 20px;
+    transition: border-color 0.2s;
 }
 
-.input-texto {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.nc-image-upload:hover {
+    border-color: #1f2937;
+}
+
+
+.nc-fields-col {
     flex: 1;
-    width: calc(100vw - 275px);
-    margin: 0 1rem;
-    gap: 1rem;
-    max-width: 96%;
-    padding: 0 1rem;
-    align-items: flex-start;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
-.input-texto > div {
-    flex-wrap: wrap;
+.nc-input-wrapper {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
-    gap: 0.5rem;
-    text-align: left;
-    align-items: flex-start;
+    gap: 5px;
 }
 
-.input-texto > div > label{
-    font-size: 1rem;
-    color: var(--cor-primaria);
-    text-align: left;
+.nc-span-2 {
+    grid-column: span 2;
 }
 
-option{
-    font-size: 1rem;
-    color: var(--text-secondary-color);
+.nc-input-wrapper label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #374151;
 }
 
-h2{
-    color: var(--cor-primaria);
-    text-align: left;
-    margin: 0rem 2rem;
+.nc-input {
+    height: 45px;
+    border: 1px solid #9ca3af;
+
+    border-radius: 4px;
+    padding: 0 10px;
+    font-size: 14px;
+    width: 100%;
+    outline: none;
+    box-sizing: border-box;
+    color: #333;
 }
 
-input{
-    padding: 0rem;
-}
 
-#nome-cliente{
-    width: 200px;
-}
-
-#cpf-cliente{
-    width: 150px;
-}
-
-#rg-cliente{
-    width: 100px;
-}
-
-#genero{
-    width: 120px;
-}
-
-#tipo-pessoa{
-    width: 120px;
-}
-
-label{
-    color: var(--cor-primaria);
-    font-size: 1rem;
-    text-align: left;
-    align-items: flex-start;
-    justify-self: start;
-}
-
-input{
-    height: 30px;
-}
-
-select{
-    height: 30px;
-}
-
-.label-nome{
-    justify-self: self-start;
-}
-
-.form-grupo-endereco{
-    margin: 1rem 2rem;
+.nc-radio-group {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    width: calc(100vw - 275px);
-    max-width: 96%;
-    justify-content: flex-start;
-    margin-bottom: 6rem;
+    align-items: center;
+    gap: 15px;
+    height: 45px;
+
 }
 
-.form-grupo-endereco > div{
+.nc-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: #374151;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.nc-radio-label input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+
+.nc-endereco-grid {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr 1fr 1.5fr;
+
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+.nc-endereco-grid .nc-input-wrapper:nth-child(5) {
+
+    grid-column: span 2;
+}
+
+.nc-endereco-grid .nc-input-wrapper:nth-child(6) {
+
+    grid-column: span 1;
+}
+
+
+
+
+.nc-endereco-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1.5fr;
+
+    gap: 20px;
+}
+
+
+.nc-endereco-grid>.nc-input-wrapper:nth-child(2) {
+
+    grid-column: span 1;
+
+}
+
+
+.nc-endereco-grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 2fr;
+    gap: 20px;
+    width: 100%;
+}
+
+.nc-endereco-grid>div:nth-child(2) {
+
+    grid-column: auto;
+
+}
+
+.nc-endereco-grid>div:nth-child(5) {
+
+    grid-column: span 2;
+
+}
+
+
+.nc-btn-add-endereco {
+    background-color: #1f2937;
+
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 24px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    align-self: flex-start;
+    margin-top: 90px;
+}
+
+.nc-form-card {
+    background: white;
+    width: 100%;
+    max-width: 1400px;
+    padding: 30px 40px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    justify-content: flex-start;
-    align-items: flex-start;
+    height: auto;
+
+    flex: 1;
+
+    margin-bottom: 40px;
 }
 
+.nc-section-block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    position: relative;
+
+}
+
+.nc-section-block+.nc-section-block {
+    margin-top: 60px;
+
+}
+
+
+.nc-contato-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    gap: 20px;
+    width: 100%;
+}
+
+
+.nc-actions-row {
+    display: flex;
+    gap: 20px;
+    margin-top: 60px;
+
+    width: 100%;
+}
+
+.nc-btn-save {
+    background-color: #1f2937;
+
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 40px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    min-width: 150px;
+}
+
+.nc-btn-cancel {
+    background-color: #7f1d1d;
+
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 40px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    min-width: 150px;
+}
