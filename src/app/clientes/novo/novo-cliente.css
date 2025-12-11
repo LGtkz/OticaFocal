@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: flex-start;
     gap: 1.2rem;
-    width: 1500px;
+    width: calc(100vw - 275px);
     height: 100px;
     background-color: white;
     padding-left: 2rem;
@@ -26,10 +26,10 @@
 }
 
 .form-container {
-    width: 1500px;
+    width: calc(100vw - 275px);
     height: 220px;
     background: white;
-    margin: 40px 0;
+    margin: 40px 20px;
     border-radius: 4px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     display: flex;
