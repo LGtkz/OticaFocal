@@ -28,10 +28,10 @@ export default function Produtos() {
             <div className="produtos-box">
 
                 <Link href="/produtos/novo">
-                    <button className="btn-novo-produto">Novo produto +</button>
+                    <button className="btn-novo-produto">Novo Produto +</button>
                 </Link>
 
-                <label className="label-buscar">Buscar produto</label>
+                <label className="label-buscar">Buscar Produto</label>
 
 
                 <div className="input-busca">
@@ -52,6 +52,8 @@ export default function Produtos() {
             <div className="produtos-lista-container">
                 <p className="contador-produtos">Foi encontrado 1 produtos</p>
 
+
+
                 <div className="produto-card">
                     <div className="produto-info-principal">
                         <h2>Oculos Ray Ban</h2>
@@ -59,12 +61,16 @@ export default function Produtos() {
                     </div>
 
                     <div className="produto-info-secundaria">
-                        <p>Quantidade: 23</p>
-                        <p>Marca: RayBan</p>
                         <p>Categoria: Armação de acetato</p>
+
                     </div>
 
-                    <button className="btn-preco">300,00 R$</button>
+
+                    <button className="btn-preco">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
                 </div>
             </div>
 

@@ -23,123 +23,158 @@ export default function NovoCliente() {
     };
 
     return (
-        <div className='cadastra-cliente' >
-            <div className={'clientes-page'}>
+        <div className="novo-cliente-container">
+
+            <div className="titulo-clientes">
                 <Image
                     src="/Cliente.svg"
-                    alt="Ícone de Clientes"
-                    width={48}
-                    height={48}
+                    alt="Ícone de cliente"
+                    width={70}
+                    height={70}
                 />
-                <h1 className="titulo-clientes">Novo cliente</h1>
+
+                <h1 className={inter.className}>Clientes</h1>
             </div>
-            <div className='form-cliente'>
-                <h2>Principais dados</h2>
-                <div className='form-grupo'>
-                    <div className='input-imagem'>
-                        <label htmlFor='imagem' className='input-imagem-label'>Clique para adicionar uma imagem</label>
-                        <input type="file" id='imagem' name='imagem' accept='image/*'></input>
-                    </div>
-                    <div className='input-texto'>
-                        <div className='label-nome'>
-                            <label htmlFor='nome-cliente'>Nome completo*</label>
-                            <input type='text' id='nome-cliente' name='nome-cliente' required></input>
+
+            <div className="nc-form-card">
+
+
+                <div className="nc-section-block">
+                    <h2 className="nc-section-title">Principais dados</h2>
+
+                    <div className="nc-content-wrapper">
+                        <div className="nc-image-col">
+                            <div className="nc-image-upload">
+                                <p>Clique para adicionar<br />uma imagem</p>
+                            </div>
                         </div>
-                        <div className='label-tipo-cliente'>
-                            <label htmlFor='tipo-cliente'>Tipo de cliente</label>
-                            <select id='tipo-cliente' name='tipo cliente'>
-                                <option value="contribuinte">Contribuinte</option>
-                                <option value="nao-contribuinte">Não contribuinte</option>
-                            </select>
-                        </div>
-                        <div className='label-tipo-pessoa'>
-                            <label htmlFor='tipo-pessoa'>Tipo de pessoa</label>
-                            <select id='tipo-pessoa' name='tipo-pessoa'>
-                                <option value="fisica">Física</option>
-                                <option value="juridica">Jurídica</option>
-                            </select>
-                        </div>
-                        <div className='label-cpf'>
-                            <label htmlFor='cpf-cliente'>CPF*</label>
-                            <input type='text' id='cpf-cliente' name='cpf-cliente' maxLength={14} placeholder="000.000.000-00" required></input>
-                        </div>
-                        <div className='label-genero'>
-                            <label htmlFor='genero'>Gênero</label>
-                            <select id='genero' name='genero'>
-                                <option value="masculino">Masculino</option>
-                                <option value="feminino">Feminino</option>
-                                <option value="outro">Outro</option>
-                            </select>
-                        </div>
-                        <div className='label-data-nascimento'>
-                            <label htmlFor='data-nascimento'>Data de nascimento</label>
-                            <input type='text' id='data-nascimento' name='data-nascimento' maxLength={10} placeholder="DD/MM/AAAA" onChange={handleDateChange}></input>
-                        </div>
-                        <div className='label-cnpj'>
-                            <label htmlFor='cnpj-cliente'>CNPJ</label>
-                            <input type='text' id='cnpj-cliente' name='cnpj-cliente' maxLength={18} placeholder="00.000.000/0000-00"></input>
-                        </div>
-                    </div>
-                </div>
-                <div className='form-endereco'>
-                    <h2>Endereço</h2>
-                    <div className='form-grupo-endereco'>
-                        <div className='label-cep'>
-                            <label htmlFor='cep'>CEP</label>
-                            <input type='text' id='cep' name='cep' maxLength={9} placeholder="00000-000"></input>
-                        </div>
-                        <div className='label-endereco'>
-                            <label htmlFor='endereco'>Endereço</label>
-                            <input type='text' id='endereco' name='endereco'></input>
-                        </div>
-                        <div className='label-numero'>
-                            <label htmlFor='numero'>Número</label>
-                            <input type='text' id='numero' name='numero'></input>
-                        </div>
-                        <div className='label-bairro'>
-                            <label htmlFor='bairro'>Bairro</label>
-                            <input type='text' id='bairro' name='bairro'></input>
-                        </div>
-                        <div className='label-complemento'>
-                            <label htmlFor='complemento'>Complemento</label>
-                            <input type='text' id='complemento' name='complemento'></input>
-                        </div>
-                        <div className='label-cidade'>
-                            <label htmlFor='cidade'>Cidade</label>
-                            <input type='text' id='cidade' name='cidade'></input>
-                        </div>
-                        <div className='label-estado'>
-                            <label htmlFor='estado'>Estado</label>
-                            <input type='text' id='estado' name='estado'></input>
+
+                        <div className="nc-fields-col">
+
+                            <div className="nc-input-wrapper nc-span-2">
+                                <label>Nome*</label>
+                                <input type="text" className="nc-input" />
+                            </div>
+                            <div className="nc-input-wrapper">
+                                <label>Tipo de cliente</label>
+                                <select className="nc-input">
+                                    <option>Não contribuinte</option>
+                                    <option>Contribuinte</option>
+                                </select>
+                            </div>
+
+
+                            <div className="nc-input-wrapper">
+                                <label>CPF*</label>
+                                <input type="text" className="nc-input" />
+                            </div>
+                            <div className="nc-input-wrapper">
+                                <label>RG</label>
+                                <input type="text" className="nc-input" />
+                            </div>
+                            <div className="nc-input-wrapper">
+                                <label>Genero</label>
+                                <select className="nc-input">
+                                    <option>Genero</option>
+                                    <option>Masculino</option>
+                                    <option>Feminino</option>
+                                </select>
+                            </div>
+
+
+                            <div className="nc-input-wrapper">
+                                <label>Tipo de cliente</label>
+                                <div className="nc-radio-group">
+                                    <label className="nc-radio-label">
+                                        <input type="radio" name="tipo_pessoa" defaultChecked />
+                                        <span>Pessoa física</span>
+                                    </label>
+                                    <label className="nc-radio-label">
+                                        <input type="radio" name="tipo_pessoa" />
+                                        <span>Pessoa juridica</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="nc-input-wrapper">
+                                <label>Data de nascimento</label>
+                                <input type="text" className="nc-input" placeholder="__/__/____" onChange={handleDateChange} />
+                            </div>
+                            <div className="nc-input-wrapper">
+                                <label>CNPJ</label>
+                                <input type="text" className="nc-input" />
+                            </div>
                         </div>
                     </div>
                 </div>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <div className='form-contato'>
-                    <h2>Contato</h2>
-                    <div className='form-grupo-contato'>
-                        <div className='label-telefone'>
-                            <label htmlFor='telefone'>Telefone</label>
-                            <input type='text' id='telefone' name='telefone' maxLength={15} placeholder="(00)00000-0000"></input>
+
+
+                <div className="nc-section-block">
+                    <h2 className="nc-section-title">Endereço</h2>
+                    <div className="nc-endereco-grid">
+
+                        <div className="nc-input-wrapper">
+                            <label>CEP</label>
+                            <input type="text" className="nc-input" />
                         </div>
-                        <div className='label-email'>
-                            <label htmlFor='email'>Email</label>
-                            <input type='email' id='email' name='email'></input>
+                        <div className="nc-input-wrapper">
+                            <label>Endereço</label>
+                            <input type="text" className="nc-input" />
+                        </div>
+                        <div className="nc-input-wrapper">
+                            <label>Número</label>
+                            <input type="text" className="nc-input" />
+                        </div>
+                        <div className="nc-input-wrapper">
+                            <label>Bairro</label>
+                            <input type="text" className="nc-input" />
+                        </div>
+
+
+                        <div className="nc-input-wrapper">
+                            <label>Complemento</label>
+                            <input type="text" className="nc-input" />
+                        </div>
+                        <div className="nc-input-wrapper">
+                            <label>Cidade</label>
+                            <input type="text" className="nc-input" />
+                        </div>
+                        <div className="nc-input-wrapper">
+                            <label>Estado</label>
+                            <input type="text" className="nc-input" />
+                        </div>
+                    </div>
+                    <button className="nc-btn-add-endereco">Adicionar endereço</button>
+                </div>
+
+
+                <div className="nc-section-block">
+                    <h2 className="nc-section-title">Informações de contato</h2>
+                    <div className="nc-contato-grid">
+                        <div className="nc-input-wrapper">
+                            <label>Celular*</label>
+                            <input type="text" className="nc-input" />
+                        </div>
+                        <div className="nc-input-wrapper">
+                            <label>Email</label>
+                            <input type="text" className="nc-input" />
+                        </div>
+                        <div className="nc-input-wrapper">
+                            <label>Telefone*</label>
+                            <input type="text" className="nc-input" />
                         </div>
                     </div>
                 </div>
-                <div className='form-botoes'>
-                    <button className='botao-cancelar' type='reset'>Cancelar</button>
-                    <button className='botao-salvar' type='submit'>Salvar</button>
+
+
+                <div className="nc-actions-row">
+                    <button className="nc-btn-save">Salvar</button>
+                    <button className="nc-btn-cancel">Cancelar</button>
                 </div>
+
             </div>
-        </div >
+        </div>
+
+
+
     );
 }
-
