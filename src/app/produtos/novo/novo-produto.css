@@ -12,8 +12,8 @@
     background-color: #ffffff;
     width: 100%;
     min-height: 100vh;
-    padding: 40px 60px; 
-    padding-bottom: 150px;
+    padding: 30px 60px; 
+    padding-bottom: 350px;
 }
 
 .np-header {
@@ -40,7 +40,6 @@
     background-color: transparent; 
     box-shadow: none; 
     border: none; 
-    
     display: flex;
     flex-direction: column;
     padding: 0; 
@@ -78,9 +77,9 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #6b7280;
+    color: #383b41;
     cursor: pointer;
-    background-color: #fafafa; 
+    background-color: #faf8f8; 
     padding: 20px;
     font-size: 20px;
     transition: border-color 0.2s;
@@ -90,15 +89,13 @@
     border-color: #1f2937;
 }
 
-
 .np-fields-col {
     flex: 1;
     display: grid;
     grid-template-columns: 1fr 1fr; 
-    column-gap: 60px;
-    row-gap: 50px;   
+    column-gap: 80px;
+    row-gap: 40px;   
 }
-
 
 .np-input-group {
     display: flex;
@@ -107,26 +104,27 @@
 }
 
 .np-input-group label {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     color: #4b5563;
 }
 
 .np-input {
-    height: 50px;
+    height: 150px;
     border: 1px solid #d1d5db;
     border-radius: 6px;
-    padding: 0 15px;
-    font-size: 20px;
+    padding: 0 20px;
+    font-size: 22px;
     width: 100%;
     background-color: #fff;
     outline: none;
+    color: #374151;
 }
 
 .np-input-combined {
     display: flex;
     width: 100%;
-    height: 80px;
+    height: 150px; 
 }
 
 .np-input-combined select {
@@ -134,15 +132,16 @@
     border: 1px solid #d1d5db;
     border-right: none;
     border-radius: 6px 0 0 6px;
-    padding: 0 15px;
-    font-size: 15px;
+    padding: 0 20px;
+    font-size: 24px;
     background-color: #fff;
     cursor: pointer;
     outline: none;
+    color: #374151;
 }
 
 .np-btn-plus {
-    width: 50px;
+    width: 80px;
     background-color: #1f2937;
     color: white;
     font-size: 24px;
@@ -152,4 +151,38 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.np-buttons-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-end; 
+    width: 100%;
+    height: 100%; 
+}
+
+.np-btn {
+    padding: 0 60px; 
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+    height: 50px; 
+}
+
+.np-btn:hover { opacity: 0.9; }
+
+.np-btn-save { background-color: #1f2937; color: white; }
+.np-btn-cancel { background-color: #ef4444; color: white; }
+.checkbox-wrapper {
+    flex-direction: row;
+    align-items: center;
+    height: 100px; 
+}
+.checkbox-wrapper input {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
 }
