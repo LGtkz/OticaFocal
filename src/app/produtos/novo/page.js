@@ -1,138 +1,94 @@
-import Image from "next/image";
-import Link from 'next/link';
+'use client';
+
 import './novo-produto.css'; 
+import Image from "next/image";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+    subsets: ["latin"],
+    weight: ["400", "700", "800"],
+});
 
 export default function NovoProduto() {
     return (
-        <div className="page-produto-wrapper">
-
-            <div className="card-branco ">
-                <Image
-                    src="/produto.svg" 
-                    alt="Ícone de produto"
-                    width={70}  
-                    height={70} 
-                    className="icon-titulo"
-                />
+        <div className={`np-page ${inter.className}`}>
+            
+           
+            <div className="np-header">
+                <Image src="/produto.svg" alt="Ícone"
+                width={70}
+                height={70} />
                 <h1>Novo Produto</h1>
             </div>
 
-            <div className="card-branco">
-                <h2>Principais dados</h2>
+            
+            <div className="np-main-card">
+                
+                
+                <div>
+                    <h2 className="np-section-title">Principais dados</h2>
+                    
+                    <div className="np-content-wrapper">
+                    
+                        <div className="np-image-col">
+                            <div className="np-upload-box">
+                                <p>Clique para adicionar<br/>uma imagem</p>
+                            </div>
+                        </div>
 
-                <div className="form-linha">
-                    <div className="input-group col-full">
-                        <label>Nome do produto*</label>
-                        <input type="text" />
-                    </div>
+                       
+                        <div className="np-fields-col">
+                            
+                            <div className="np-input-group">
+                                <label>Nome do produto*</label>
+                                <input type="text" className="np-input" />
+                            </div>
+                            
+                            <div className="np-input-group">
+                                <label>Referência*</label>
+                                <input type="text" className="np-input" />
+                            </div>
 
-                    <div className="input-group col-media">
-                        <label>Referência*</label>
-                        <input type="text" />
-                    </div>
+                            <div className="np-input-group">
+                                <label>Unidade</label>
+                                <div className="np-input-combined">
+                                    <select><option>UN</option></select>
+                                    <button className="np-btn-plus">+</button>
+                                </div>
+                            </div>
+                            
+                            <div className="np-input-group">
+                                <label>Fornecedor*</label>
+                                <input type="text" className="np-input" />
+                            </div>
 
-                    <div className="input-group col-media">
-                        <label>Categoria</label>
-                        <div className="select-com-botao">
-                            <select><option>Selecione</option></select>
-                            <button className="btn-adicionar">+</button>
+                            <div className="np-input-group">
+                                <label>Categoria</label>
+                                <div className="np-input-combined">
+                                    <select><option>Selecione</option></select>
+                                    <button className="np-btn-plus">+</button>
+                                </div>
+                            </div>
+                            
+                            <div className="np-input-group">
+                                <label>Marca</label>
+                                <div className="np-input-combined">
+                                    <select><option>Selecione</option></select>
+                                    <button className="np-btn-plus">+</button>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-
-                    <div className="input-group col-media">
-                        <label>Marca</label>
-                        <div className="select-com-botao">
-                            <select><option>Selecione</option></select>
-                            <button className="btn-adicionar">+</button>
-                        </div>
-                    </div>
                 </div>
 
-                <div className="form-linha">
-                    <div className="input-group col-curta">
-                        <label>Unidade</label>
-                        <div className="select-com-botao">
-                            <select><option>UN</option></select>
-                            <button className="btn-adicionar">+</button>
-                        </div>
-                    </div>
+                
+                
 
-                    <div className="input-group col-media">
-                        <label>Fornecedor*</label>
-                        <input type="text" />
-                    </div>
-                </div>
-            </div>
-
-            <div className="card-branco">
-                <h2>Dados de preço e estoque</h2>
-
-                <table className="tabela-custom">
-                    <thead>
-                        <tr>
-                            <th style={{ width: '50px' }}>Ativar</th>
-                            <th>Ótica</th>
-                            <th>Custo</th>
-                            <th>Venda</th>
-                            <th>Estoque</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style={{ textAlign: 'center' }}>
-                                <input type="checkbox" defaultChecked />
-                            </td>
-                            <td>Ótica Marata</td>
-                            <td>
-                                <div className="input-moeda">
-                                    <span className="simbolo">R$</span>
-                                    <input type="text" className="input-sem-borda" />
-                                </div>
-                            </td>
-                            <td>
-                                <div className="input-moeda">
-                                    <span className="simbolo">R$</span>
-                                    <input type="text" className="input-sem-borda" />
-                                </div>
-                            </td>
-                            <td>
-                                <div className="input-moeda">
-                                    <input type="text" className="input-sem-borda" placeholder="Estoque" />
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div className="card-branco">
-                <h2>Informações para emissão de NFe e NFCe</h2>
-                <div className="form-linha">
-                    <div className="input-group col-full">
-                        <label>NCM</label>
-                        <input type="text" />
-                    </div>
-                    <div className="input-group col-full">
-                        <label>Origem da mercadoria</label>
-                        <input type="text" />
-                    </div>
-                </div>
-            </div>
-
-            <div className="card-branco">
-                <h2>Imagem do produto</h2>
-                <div className="area-upload">
-                    <p>Clique para adicionar<br />uma imagem</p>
-                </div>
-            </div>
-
-            <div className="area-botoes">
-                <button className="btn-salvar-final">Salvar</button>
-                <Link href="/produtos">
-                    <button className="btn-cancelar-final">Cancelar</button>
-                </Link>
-            </div>
+            </div> 
 
         </div>
     );
 }
+
+
