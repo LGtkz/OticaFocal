@@ -28,7 +28,7 @@ export default function Clientes() {
                         Novo Cliente +
                     </Link>
                 </div>
-                <p>Buscar clientes</p>
+                <p id='busca'>Buscar clientes</p>
                 <div className='cliente-input-pesquisa'>
                     <Image
                         src="/search-button-svgrepo-com.svg"

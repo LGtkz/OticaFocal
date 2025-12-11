@@ -20,57 +20,57 @@ export default function Produtos() {
                         width={70}
                         height={70}
                     />
-
                     <h1 className={inter.className}>Produtos</h1>
                 </div>
             </div>
 
-            <div className="produtos-box">
-
-                <Link href="/produtos/novo">
-                    <button className="btn-novo-produto">Novo produto +</button>
-                </Link>
-
-                <label className="label-buscar">Buscar produto</label>
-
-
-                <div className="input-busca">
+            <div className='busca-produtos'>
+                <div className='btnAbreCliente'>
+                    <Link href="/produtos/novo" className="botao-novo-cliente">
+                        Novo Produto +
+                    </Link>
+                </div>
+                <p id='busca'>Buscar produtos</p>
+                <div className='cliente-input-pesquisa'>
                     <Image
-
                         src="/search-button-svgrepo-com.svg"
                         alt="Ícone de busca"
                         width={22}
                         height={22}
                         className="icone-busca"
                     />
-                    <input type="text" placeholder="Nome" />
-                </div>
-
-
-            </div>
-
-            <div className="produtos-lista-container">
-                <p className="contador-produtos">Foi encontrado 1 produtos</p>
-
-                <div className="produto-card">
-                    <div className="produto-info-principal">
-                        <h2>Oculos Ray Ban</h2>
-                        <p>id:23453</p>
-                    </div>
-
-                    <div className="produto-info-secundaria">
-                        <p>Quantidade: 23</p>
-                        <p>Marca: RayBan</p>
-                        <p>Categoria: Armação de acetato</p>
-                    </div>
-
-                    <button className="btn-preco">300,00 R$</button>
+                    <input
+                        type="text"
+                        placeholder="Nome"
+                        className='input-pesquisa-cliente'
+                    />
                 </div>
             </div>
-
+            <div className='cliente-busca-resultado'>
+                <h3>Foram encontrados 1 produtos</h3>
+                <div className='cliente-lista'>
+                    <div className='cliente-item'>
+                        <div className='cliente-info-principal'>
+                            <div className='cliente-barra'></div>
+                            <div className='cliente-info-nome'>
+                                <p className='cliente-nome'>Oculos ray-ban</p>
+                                <p className='cliente-cpf'>id: 2345</p>
+                            </div>
+                        </div>
+                        <div className='cliente-info-contato'>
+                            <p className='cliente-telefone'>Categoria: Armação</p>
+                            <p className='cliente-email'>Quantidade: 54</p>
+                        </div>
+                        <Image
+                            src="/verMais.svg"
+                            alt="Ver todas informações"
+                            width={88}
+                            height={80}
+                            className="icone-verMais"
+                        />
+                    </div>
+                </div>
+            </div>
         </div>
-
-
-
     );
 }

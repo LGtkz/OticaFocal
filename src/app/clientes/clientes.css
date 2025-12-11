@@ -164,3 +164,7 @@ h3 {
     justify-content: flex-end;
     cursor: pointer;
 }
+
+#busca{
+    color: var(--cor-primaria);
+}
