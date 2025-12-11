@@ -1,125 +1,139 @@
-.pagina-scroll {
-    width: 100%;
-    height: 100%;
-    padding: 30px;
-    overflow-y: auto;
-    background-color: #f5f6fa;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.header-topo {
+.cfg-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff; 
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 150px;
+}
+
+.cfg-header-container {
+    width: 100%;
+    height: 250px;
     background-color: white;
-    padding: 20px 30px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Garante alinhamento à esquerda */
-    gap: 15px;
-    width: 100%;
+    padding-left: 60px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+    border: 1px solid #f0f0f0;
 }
 
-.header-topo h1 {
-    font-size: 28px;
+.cfg-titulo-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cfg-titulo-header h1 {
+    font-size: 40px;
     font-weight: 800;
     color: #333;
-    margin: 0;
 }
 
-.card-padrao {
-    background-color: white;
+.cfg-form-container {
     width: 100%;
-    border-radius: 6px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 40px;
+    height: auto !important;
+    min-height: 300px;
+    overflow: visible !important;
+    background: white;
+    margin-bottom: 60px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+    border: 1px solid #f0f0f0; 
     display: flex;
     flex-direction: column;
-    gap: 25px; 
+    padding: 60px;
+    gap: 30px; 
     align-items: flex-start; 
 }
 
-.titulo-secao {
-    font-size: 18px;
+.cfg-form-container h2 {
+    font-size: 24px;
     font-weight: 700;
-    color: #444;
+    color: #2c3e50;
+    padding-bottom: 10px;
+    width: 100%;
+    text-align: left; 
     margin: 0;
-    width: 100%;
-    text-align: left;
 }
 
-.linha-conteudo {
+.cfg-logo-section {
     display: flex;
-    gap: 30px;
+    flex-direction: row; 
     align-items: flex-start; 
+    gap: 40px;
     width: 100%;
 }
 
-.box-upload {
+.cfg-box-upload {
     width: 200px;
-    height: 180px;
-    border: 1px solid #ccc; 
+    height: 150px;
+    border: 2px dashed #b0b0b0;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #666;
+    color: #777;
     cursor: pointer;
+    background-color: #fafafa;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 20px;
+    flex-shrink: 0;
+}
+
+.cfg-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 450px; 
+    margin-top: 0px; 
+}
+
+.cfg-input-wrapper label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #444;
+}
+
+.cfg-input-padrao {
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 15px;
+    font-size: 16px;
+    width: 100%;
     background-color: #fff;
 }
 
-.texto-upload {
-    font-size: 14px;
-    line-height: 1.4;
-}
-
-.grupo-input {
+.cfg-botoes-container {
+    width: 96%;
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 350px; 
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
-.grupo-input label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #555;
-}
-
-.grupo-input input {
-    height: 40px;
-    padding: 0 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    outline: none;
-}
-
-
-.botoes-container {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px; 
-    justify-content: flex-start;
-}
-
-.btn-salvar { 
-    background: #2c3e50; 
-    color: white; 
-    padding: 12px 40px; 
-    border: none; 
-    border-radius: 4px; 
-    font-weight: bold; 
+.cfg-btn-acao {
+    padding: 20px 80px;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
+    color: white;
 }
 
-.btn-cancelar { 
-    background: #922b21; 
-    color: white; 
-    padding: 12px 40px; 
-    border: none; 
-    border-radius: 4px; 
-    font-weight: bold; 
-    cursor: pointer;
-}
+.cfg-btn-salvar { background-color: #1f2937; }
+.cfg-btn-cancelar { background-color: #a83232; }
