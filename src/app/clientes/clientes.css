@@ -1,3 +1,10 @@
+.clientes-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+}
+
 .clientes-container {
     display: flex;
     flex-direction: row;
@@ -10,7 +17,7 @@
     background-color: white;
     padding-left: 2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    margin: 0 auto;
+    margin: 40px auto 0 auto;
     box-sizing: border-box;
 }
 
@@ -158,8 +165,4 @@
 
 .btn-receita:hover {
     opacity: 0.9;
-}
-
-#busca{
-    color: var(--cor-primaria);
 }

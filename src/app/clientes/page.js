@@ -25,14 +25,16 @@ export default function Clientes() {
                 </div>
             </div>
 
-            <div className='input-pesquisa'>
-                <div className='btnAbreCliente'>
-                    <Link href="/clientes/novo" className="botao-novo-cliente">
-                        Novo Cliente +
-                    </Link>
-                </div>
-                <p id='busca'>Buscar clientes</p>
-                <div className='cliente-input-pesquisa'>
+            <div className="clientes-box">
+
+                <Link href="/clientes/novo">
+                    <button className="btn-novo-cliente">Novo Cliente +</button>
+                </Link>
+
+                <label className="label-buscar">Buscar Cliente</label>
+
+
+                <div className="input-busca">
                     <Image
 
                         src="/search-button-svgrepo-com.svg"
