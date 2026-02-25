@@ -31,23 +31,21 @@ export default function OrdemServico() {
                     <button className="btn-nova-ordem-servico">Nova O.S +</button>
                 </Link>
 
-                <label className="label-buscar">Buscar Cliente</label>
+               <label className="label-buscar">Buscar O.S</label>
+              
+                              <div className="input-busca">
+                                  <Image
+                                      src="/search-button-svgrepo-com.svg"
+                                      alt="Ícone de busca"
+                                      width={22}
+                                      height={22}
+                                      className="icone-busca"
+                                  />
+                                  <input type="text" placeholder="Nome" />
+                              </div>
+                          </div>
+              
 
-
-                <div className="input-busca">
-                    <Image
-
-                        src="/search-button-svgrepo-com.svg"
-                        alt="Ícone de busca"
-                        width={22}
-                        height={22}
-                        className="icone-busca"
-                    />
-                    <input type="text" placeholder="Nome" />
-                </div>
-
-
-            </div>
 
 
         </div>
