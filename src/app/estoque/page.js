@@ -14,7 +14,7 @@ export default function Estoque() {
             <div className="estoque-container">
                 <div className="titulo-estoque">
                     <Image
-                        src="/Cliente.svg"
+                        src="/estoque.svg"
                         alt="Ícone"
                         width={70}
                         height={70}
@@ -47,13 +47,13 @@ export default function Estoque() {
 
                 <div className="estoque-card estoque-card--ativo">
                     <div className="estoque-info-principal">
-                        <h2>Francisco Pereira</h2>
-                        <p>CPF: 992.185.426-23</p>
+                        <h2>a</h2>
+                        <p>a</p>
                     </div>
 
                     <div className="estoque-info-secundaria">
-                        <p>Celular: (38) 999652156</p>
-                        <p>Cadastro: 23/11/2025</p>
+                        <p>a</p>
+                        <p>a</p>
                     </div>
 
                     <button className="btn-receita" aria-label="Abrir">

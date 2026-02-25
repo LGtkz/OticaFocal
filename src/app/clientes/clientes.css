@@ -1,54 +1,67 @@
-.clientes-page {
+.cliente-page {
     display: flex;
     flex-direction: column;
     width: 100%;
     min-height: 100vh;
 }
 
-.clientes-container {
+
+.cliente-container {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 1.2rem;
+
     width: 100%;
     max-width: 1400px;
-    height: 100px;
+
+    min-height: 100px;
+    height: auto;
+
     background-color: white;
-    padding-left: 2rem;
+    padding: 0 clamp(1rem, 2vw, 2rem);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     margin: 40px auto 0 auto;
     box-sizing: border-box;
 }
 
-.titulo-clientes {
+.titulo-cliente {
     display: flex;
     align-items: center;
     gap: 1.2rem;
     background-color: white;
+    min-width: 0;
+
 }
 
-.clientes-container h1 {
-
+.cliente-container h1 {
     color: var(--cor-primaria);
-    font-size: 32px;
+    font-size: clamp(22px, 2.2vw, 32px);
     font-weight: 800;
     margin: 0;
     background-color: white;
+    white-space: nowrap;
 }
 
-.clientes-box {
+
+.cliente-box {
     width: 100%;
     max-width: 1400px;
-    height: 170px;
+
+    height: auto;
+    min-height: 170px;
+
     background: white;
     margin: 30px auto;
     border-radius: 4px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding: 20px 30px;
+    gap: 12px;
+
+    padding: 20px clamp(1rem, 2vw, 30px);
     align-items: flex-start;
     box-sizing: border-box;
 }
@@ -56,12 +69,14 @@
 .btn-novo-cliente {
     background-color: var(--cor-primaria);
     color: white;
-    padding: 8px 16px;
+    padding: 10px 16px;
     border: none;
     border-radius: 4px;
-    width: 158px;
-    font-size: 18px;
+    width: auto;
+    min-width: 160px;
+    font-size: 16px;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .btn-novo-cliente:hover {
@@ -81,34 +96,32 @@
     border-radius: 4px;
     padding: 6px 10px;
     background-color: white;
-    width: 1300px;
-
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .input-busca input {
-
+    width: 100%;
     border: none;
     outline: none;
     background-color: white;
-
 }
 
-
-.clientes-lista-container {
+.cliente-lista-container {
     width: 100%;
     max-width: 1400px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: flex-start;
-    margin: 0 auto;
+    box-sizing: border-box;
 }
 
-.contador-clientes {
+.contador-cliente {
     color: #666;
     font-size: 14px;
     margin-left: 30px;
-
 }
 
 .cliente-card {
@@ -118,35 +131,53 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     padding: 20px 30px;
     border: 1px solid #e0e0e0;
     border-left: 10px solid var(--cor-primaria);
+
     height: 100px;
     width: 100%;
     box-sizing: border-box;
 }
 
-.cliente-info-principal h2 {
-    font-size: 16px;
+.col-nome {
+    display: flex;
+    align-items: center;
+    min-width: 220px;
+}
+
+.col-nome h2 {
+    font-size: 18px;
     color: #333;
-    margin-bottom: 4px;
+    margin: 0;
     font-weight: 500;
 }
 
-.cliente-info-principal p {
-    font-size: 12px;
-    color: #888;
+.col-cpf {
+    display: flex;
+    align-items: center;
+    min-width: 220px;
 }
 
-.cliente-info-secundaria {
+.col-cpf p {
+    font-size: 12px;
+    color: #888;
+    margin: 0;
+}
+
+.col-info {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    min-width: 260px;
+    text-align: left;
 }
 
-.cliente-info-secundaria p {
+.col-info p {
     font-size: 12px;
     color: #666;
+    margin: 0;
 }
 
 .btn-receita {
@@ -160,9 +191,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 0;
 }
 
 .btn-receita:hover {
     opacity: 0.9;
+}
+
+@media (max-width: 1024px) {
+    .estoque-card {
+        height: auto;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    .col-nome,
+    .col-cpf,
+    .col-info {
+        min-width: 0;
+    }
 }

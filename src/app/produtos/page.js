@@ -3,20 +3,19 @@ import Link from 'next/link';
 import Image from "next/image";
 import { Inter } from "next/font/google";
 
-
 const inter = Inter({
     subsets: ["latin"],
     weight: ["800"],
 });
 
-export default function Produtos() {
+export default function Produto() {
     return (
-        <div className="produtos-page">
-            <div className="produtos-container">
-                <div className="titulo-produtos">
+        <div className="produto-page">
+            <div className="produto-container">
+                <div className="titulo-produto">
                     <Image
-                        src="/produto.svg"
-                        alt="Ícone de produto"
+                        src="/Produto.svg"
+                        alt="Ícone"
                         width={70}
                         height={70}
                     />
@@ -24,14 +23,14 @@ export default function Produtos() {
                 </div>
             </div>
 
-            <div className='busca-produtos'>
-                <div className='btnAbreCliente'>
-                    <Link href="/produtos/novo" className="botao-novo-cliente">
-                        Novo Produto +
-                    </Link>
-                </div>
-                <p id='busca'>Buscar produtos</p>
-                <div className='cliente-input-pesquisa'>
+            <div className="produto-box">
+                <Link href="/produto/novo">
+                    <button className="btn-novo-produto">Novo Produto +</button>
+                </Link>
+
+                <label className="label-buscar">Buscar produto</label>
+
+                <div className="input-busca">
                     <Image
                         src="/search-button-svgrepo-com.svg"
                         alt="Ícone de busca"
@@ -39,36 +38,29 @@ export default function Produtos() {
                         height={22}
                         className="icone-busca"
                     />
-                    <input
-                        type="text"
-                        placeholder="Nome"
-                        className='input-pesquisa-cliente'
-                    />
+                    <input type="text" placeholder="Nome" />
                 </div>
             </div>
-            <div className='cliente-busca-resultado'>
-                <h3>Foram encontrados 1 produtos</h3>
-                <div className='cliente-lista'>
-                    <div className='cliente-item'>
-                        <div className='cliente-info-principal'>
-                            <div className='cliente-barra'></div>
-                            <div className='cliente-info-nome'>
-                                <p className='cliente-nome'>Oculos ray-ban</p>
-                                <p className='cliente-cpf'>id: 2345</p>
-                            </div>
-                        </div>
-                        <div className='cliente-info-contato'>
-                            <p className='cliente-telefone'>Categoria: Armação</p>
-                            <p className='cliente-email'>Quantidade: 54</p>
-                        </div>
-                        <Image
-                            src="/verMais.svg"
-                            alt="Ver todas informações"
-                            width={88}
-                            height={80}
-                            className="icone-verMais"
-                        />
+
+            <div className="produto-lista-container">
+                <p className="contador-produto">Foi encontrado 1 produto</p>
+
+                <div className="produto-card produto-card--ativo">
+                    <div className="produto-info-principal">
+                        <h2>Oculos ray-ban</h2>
+                        <p>id: 2345</p>
                     </div>
+
+                    <div className="produto-info-secundaria">
+                        <p>Categoria: Armação</p>
+                        <p>Quantidade: 54</p>
+                    </div>
+
+                    <button className="btn-receita" aria-label="Abrir">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
