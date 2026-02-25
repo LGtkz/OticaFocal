@@ -24,7 +24,7 @@ export default function Produto() {
             </div>
 
             <div className="produto-box">
-                <Link href="/produto/novo">
+                <Link href="/produtos/novo">
                     <button className="btn-novo-produto">Novo Produto +</button>
                 </Link>
 

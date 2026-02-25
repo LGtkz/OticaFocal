@@ -13,12 +13,9 @@ export default function Estoque() {
         <div className="estoque-page">
             <div className="estoque-container">
                 <div className="titulo-estoque">
-                    <Image
-                        src="/estoque.svg"
-                        alt="Ícone"
-                        width={70}
-                        height={70}
-                    />
+                   <div style={{ background: "#000", padding: 10, display: "inline-block" }}>
+        <img src="/estoque.svg" alt="Ícone" width={50} height={50} />
+    </div>
                     <h1 className={inter.className}>Estoque</h1>
                 </div>
             </div>

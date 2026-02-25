@@ -24,7 +24,7 @@ export default function Cliente() {
             </div>
 
             <div className="cliente-box">
-                <Link href="/cliente/novo">
+                <Link href="/clientes/novo">
                     <button className="btn-novo-cliente">Novo Cliente +</button>
                 </Link>
 
