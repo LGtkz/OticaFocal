@@ -1,0 +1,264 @@
+.nos-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 100px;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background-color: #f5f6fa;
+}
+
+.titulo-os {
+    width: 100%;
+    max-width: 1400px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background-color: white;
+    padding-left: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin: 0 auto 20px auto; 
+    border-radius: 4px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.titulo-os h1 {
+    font-size: 32px;
+    color: #333;
+    font-weight: 800;
+    margin: 0;
+}
+
+/* --- CARTÃO BRANCO PRINCIPAL--- */
+.nos-form-card {
+    background: white;
+    width: 100%;
+    max-width: 1400px;
+    padding: 30px 40px 50px 40px; /* Mais padding embaixo para não colar */
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 40px;
+}
+
+.nos-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr; 
+    gap: 30px;
+    width: 100%;
+    align-items: end;
+}
+
+.nos-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+    width: 100%;
+}
+
+.nos-input-wrapper label {
+    font-size: 16px; 
+    font-weight: 700;
+    color: #374151;
+}
+
+.nos-input {
+    height: 50px; 
+    border: 1px solid #9ca3af;
+    border-radius: 4px;
+    padding: 0 15px; 
+    font-size: 15px; 
+    width: 100%;
+    outline: none;
+    box-sizing: border-box;
+    color: #333;
+}
+
+.nos-input-group {
+    display: flex;
+    height: 50px;
+    width: 100%;
+}
+.nos-input-group input,
+.nos-input-group select {
+    flex: 1;
+    border: 1px solid #9ca3af;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    padding: 0 15px;
+    font-size: 16px;
+    outline: none;
+    color: #333;
+    background: white;
+}
+.nos-input-group button {
+    width: 50px; 
+    background-color: #374151;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px; 
+}
+
+.nos-input-moeda {
+    display: flex;
+    height: 50px;
+    width: 100%;
+    border: 1px solid #9ca3af;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.nos-input-moeda span {
+    background-color: #374151;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    font-weight: bold;
+    font-size: 26px;
+}
+.nos-input-moeda input {
+    flex: 1;
+    border: none;
+    padding: 0 15px;
+    font-size: 15px;
+    outline: none;
+    color: #333;
+}
+
+
+.nos-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px; 
+    margin-bottom: 20px;
+}
+
+.nos-btn-incluir {
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 60px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.nos-receita {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-top: 1px solid #e5e7eb; 
+    padding-top: 30px;
+}
+
+.nos-receita h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #374151;
+    margin: 0;
+}
+
+
+.nos-receita-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; 
+    width: 100%;
+}
+
+.nos-receita-radio-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nos-receita-label-principal {
+    font-size: 16px;
+    font-weight: 700;
+    color: #374151;
+}
+
+.nos-radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.nos-radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 15px;
+    color: #4b5563;
+    cursor: pointer;
+}
+
+.nos-btn-secundario {
+    background-color: #374151;
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.nos-receita-tabelas {
+    display: flex;
+    gap: 40px; 
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.receita-table {
+    border-collapse: collapse; 
+    text-align: center;
+    color: #374151;
+    width: 100%;
+    max-width: 500px;
+    table-layout: fixed; 
+}
+
+.receita-table th, 
+.receita-table td {
+    border: 1px solid #9ca3af;
+    padding: 0; 
+    height: 45px;
+}
+
+.receita-table th {
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.receita-table .cell-header {
+    font-weight: 700;
+    font-size: 14px;
+    background-color: #f9fafb; 
+}
+
+.receita-table input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 15px;
+    background: transparent;
+}

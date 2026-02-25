@@ -46,7 +46,7 @@ export function Menu() {
                         width={20}
                         height={20}
                     />
-                    <Link href='/ordemservico'>
+                    <Link href='/ordem-servico'>
                         Ordem de serviço
                     </Link>
                 </li>
