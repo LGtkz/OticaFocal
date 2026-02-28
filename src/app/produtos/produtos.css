@@ -8,22 +8,15 @@
 
 .produto-container {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.2rem;
-
     width: 100%;
     max-width: 1400px;
-
-    min-height: 100px;
-    height: auto;
-
+    height: 100px;
     background-color: white;
     padding: 0 clamp(1rem, 2vw, 2rem);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     margin: 40px auto 0 auto;
     box-sizing: border-box;
+    align-items: center;
 }
 
 .titulo-produto {
@@ -79,7 +72,7 @@
     white-space: nowrap;
 }
 
-.btn-novo-estoque:hover {
+.btn-novo-produto:hover {
     opacity: 0.9;
 }
 
@@ -110,11 +103,12 @@
 .produto-lista-container {
     width: 100%;
     max-width: 1400px;
-    margin: 0 auto;
+    margin: 0 auto 40px auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
+    gap: 15px;
+    /* Adiciona a margem lateral igual à de clientes */
+    padding: 0 clamp(1rem, 2vw, 2rem);
     box-sizing: border-box;
 }
 
@@ -126,24 +120,23 @@
 
 .produto-card {
     background: white;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
+    border-radius: 8px;
     padding: 20px 30px;
     border: 1px solid #e0e0e0;
     border-left: 10px solid var(--cor-primaria);
-
-    height: 100px;
     width: 100%;
+    min-height: 100px; 
+    height: auto !important; 
+    display: flex;
+    flex-direction: column; 
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
-
-.icone-busca:hover {
-    transform: scale(1.1);
-    transition: transform 0.2s;
+.produto-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .col-nome {
@@ -185,6 +178,30 @@
     margin: 0;
 }
 
+.produto-detalhes-extra {
+    margin-top: 15px;
+    padding: 20px 40px; /* Margem interna maior para o conteúdo */
+    border-top: 1px solid #eee;
+    width: 100%;
+    background-color: #fafafa;
+    /* Efeito de sombra na margem superior */
+    box-shadow: inset 0px 8px 10px -10px rgba(0, 0, 0, 0.15);
+    animation: fadeInOS 0.4s ease forwards;
+}
+
+.grid-detalhes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: center;
+}
+
+.grid-detalhes p {
+    font-size: 14px;
+    color: #444;
+    margin: 6px 0;
+}
+
 .btn-receita {
     background-color: var(--cor-primaria);
     color: white;
@@ -198,8 +215,24 @@
     justify-content: center;
 }
 
+@keyframes fadeInOS {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .btn-receita:hover {
     opacity: 0.9;
+}
+
+.produto-info-principal h2 {
+    font-size: 18px;
+    color: #333;
+    font-weight: 600;
+}
+
+.produto-info-principal p {
+    font-size: 13px;
+    color: #888;
 }
 
 @media (max-width: 1024px) {

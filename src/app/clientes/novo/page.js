@@ -1,17 +1,14 @@
 'use client';
-
-import { useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
 import './novo-cliente.css';
 import Image from "next/image";
 import { Inter } from "next/font/google";
+import { useState, useRef } from 'react'; // Adicionado useRef
 
 const inter = Inter({
     subsets: ["latin"],
     weight: ["800"],
 });
 
-// Sua função de validação de CPF integrada
 function validarCPF(cpf) {
     cpf = cpf.replace(/[^\d]+/g, '');
     if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
@@ -26,189 +23,250 @@ function validarCPF(cpf) {
 }
 
 export default function NovoCliente() {
-    const router = useRouter();
-    const fileInputRef = useRef(null);
+    const fileInputRef = useRef(null); 
+    const [imagePreview, setImagePreview] = useState(null); 
     
-    // Estados para imagem
-    const [preview, setPreview] = useState(null);
-    const [foto, setFoto] = useState(null);
-
-    // Estado com os atributos da sua tabela Cliente
     const [formData, setFormData] = useState({
         nome: '',
         cpf: '',
         genero: '',
-        data_nascimento: '',
-        email: '',
         endereco: '',
         numero: '',
         bairro: '',
         complemento: '',
         cidade: '',
         estado: '',
-        telefone: ''
+        cep: '',
+        email: '',
+        telefone: '',
+        DataNasc: '', 
     });
 
-    // Manipulação da Imagem
-    const handleDivClick = () => fileInputRef.current.click();
+    const [errors, setErrors] = useState({});
 
-    const handleFileChange = (e) => {
+    
+    const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            setFoto(file);
+            setFormData(prev => ({ ...prev, foto: file }));
             const reader = new FileReader();
-            reader.onloadend = () => setPreview(reader.result);
+            reader.onloadend = () => {
+                setImagePreview(reader.result);
+            };
             reader.readAsDataURL(file);
         }
     };
 
-    // Máscaras e Validações de entrada
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        let newValue = value;
-
-        // Regra: Apenas números para campo Número
-        if (name === 'numero') newValue = value.replace(/\D/g, '');
-
-        // Regra: Apenas letras para Nome, Bairro, Cidade e Estado
-        if (['nome', 'bairro', 'cidade', 'estado'].includes(name)) {
-            newValue = value.replace(/[0-9]/g, '');
-        }
-
-        // Máscara de CPF
-        if (name === 'cpf') {
-            newValue = value
-                .replace(/\D/g, '')
-                .replace(/(\d{3})(\d)/, '$1.$2')
-                .replace(/(\d{3})(\d)/, '$1.$2')
-                .replace(/(\d{3})(\d{1,2})/, '$1-$2')
-                .replace(/(-\d{2})\d+?$/, '$1');
-        }
-
-        // Máscara de Data de Nascimento
-        if (name === 'data_nascimento') {
-            newValue = value
-                .replace(/\D/g, '')
-                .replace(/(\d{2})(\d)/, '$1/$2')
-                .replace(/(\d{2})(\d)/, '$1/$2')
-                .replace(/(\d{4})\d+?$/, '$1');
-        }
-
-        // UF limitada a 2 letras
-        if (name === 'estado') newValue = newValue.toUpperCase().substring(0, 2);
-
-        setFormData(prev => ({ ...prev, [name]: newValue }));
+    
+    const triggerFileInput = () => {
+        fileInputRef.current.click();
     };
 
-    const handleSalvar = async (e) => {
-        e.preventDefault();
-        
-        if (!validarCPF(formData.cpf)) {
-            alert("CPF inválido! Por favor, verifique.");
+    
+    const handleCpfChange = (e) => {
+        let value = e.target.value.replace(/\D/g, ''); 
+        if (value.length > 11) value = value.slice(0, 11);
+        value = value.replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        setFormData(prev => ({ ...prev, cpf: value }));
+        if (errors.cpf) setErrors(prev => ({ ...prev, cpf: null }));
+    };
+
+    
+    const handleTelefoneChange = (e) => {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 11) value = value.slice(0, 11);
+        if (value.length > 10) value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+        else if (value.length > 5) value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+        else if (value.length > 2) value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+        else if (value.length > 0) value = value.replace(/^(\d*)/, '($1');
+        setFormData(prev => ({ ...prev, telefone: value }));
+    };
+
+    
+    const handleCepChange = async (e) => {
+        let value = e.target.value.replace(/\D/g, ''); 
+        if (value.length > 8) value = value.slice(0, 8);
+        setFormData(prev => ({ ...prev, cep: value.replace(/(\d{5})(\d)/, '$1-$2') }));
+        if (value.length === 8) {
+            try {
+                const res = await fetch(`https://viacep.com.br/ws/${value}/json/`);
+                const data = await res.json();
+                if (!data.erro) {
+                    setFormData(prev => ({
+                        ...prev, endereco: data.logradouro, bairro: data.bairro,
+                        cidade: data.localidade, estado: data.uf
+                    }));
+                    document.getElementsByName('numero')[0]?.focus();
+                }
+            } catch (error) { console.error("Erro CEP:", error); }
+        }
+    };
+
+    const handleEstadoChange = (e) => {
+        let value = e.target.value.replace(/[^a-zA-Z]/g, '').toUpperCase();
+        if (value.length > 2) value = value.slice(0, 2);
+        setFormData(prev => ({ ...prev, estado: value }));
+    };
+
+    const handleNumeroChange = (e) => {
+        setFormData(prev => ({ ...prev, numero: e.target.value.replace(/\D/g, '') }));
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
+    };
+
+    const handleDateChange = (e) => {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 8) value = value.slice(0, 8);
+        if (value.length > 4) value = value.replace(/(\d{2})(\d{2})(\d+)/, '$1/$2/$3');
+        else if (value.length > 2) value = value.replace(/(\d{2})(\d+)/, '$1/$2');
+        setFormData(prevState => ({ ...prevState, DataNasc: value }));
+    };
+
+    const handleSalvar = async () => {
+        if (!formData.nome || !formData.cpf || !formData.telefone) {
+            alert("Nome, CPF e Telefone são obrigatórios!");
+            return;
+        }
+        const cpfLimpo = formData.cpf.replace(/\D/g, '');
+        if (!validarCPF(cpfLimpo)) {
+            setErrors({ cpf: "CPF Inválido" });
+            alert("O CPF informado é inválido!");
             return;
         }
 
-        console.log("Dados prontos para o banco:", formData);
-        console.log("Arquivo de imagem:", foto);
-        // Aqui você faria o fetch para sua rota de API
+    
+        let dataParaEnviar = { ...formData };
+        if (formData.DataNasc) {
+            const partes = formData.DataNasc.split('/');
+            if (partes.length === 3) dataParaEnviar.DataNasc = `${partes[2]}-${partes[1]}-${partes[0]}`;
+        }
+
+        try {
+            const response = await fetch('http://localhost:3001/cliente', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dataParaEnviar),
+            });
+            if (response.ok) alert('Cliente salvo com sucesso!');
+            else alert('Erro ao salvar no servidor.');
+        } catch (error) { console.error("Erro na requisição:", error); }
     };
 
     return (
         <div className="novo-cliente-container">
             <div className="titulo-clientes">
-                <Image src="/Cliente.svg" alt="Ícone de cliente" width={70} height={70} />
+                <Image src="/Cliente.svg" alt="Ícone" width={70} height={70} />
                 <h1 className={inter.className}>Clientes</h1>
             </div>
 
-            <form className="nc-form-card" onSubmit={handleSalvar}>
+            <div className="nc-form-card">
                 <div className="nc-section-block">
                     <h2 className="nc-section-title">Principais dados</h2>
                     <div className="nc-content-wrapper">
                         <div className="nc-image-col">
-                            <div className="nc-image-upload" onClick={handleDivClick} style={{ cursor: 'pointer', overflow: 'hidden' }}>
-                                {preview ? (
-                                    <img src={preview} alt="Foto do cliente" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            {/* Clique aqui ativa o input de arquivo */}
+                            <div className="nc-image-upload" onClick={triggerFileInput} style={{ cursor: 'pointer', overflow: 'hidden', position: 'relative' }}>
+                                {imagePreview ? (
+                                    <img src={imagePreview} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                 ) : (
                                     <p>Clique para adicionar<br />uma imagem</p>
                                 )}
+                                {/* Input escondido */}
+                                <input 
+                                    type="file" 
+                                    ref={fileInputRef} 
+                                    onChange={handleImageChange} 
+                                    accept="image/*" 
+                                    style={{ display: 'none' }} 
+                                />
                             </div>
-                            <input type="file" ref={fileInputRef} onChange={handleFileChange} accept="image/*" style={{ display: 'none' }} />
                         </div>
 
                         <div className="nc-fields-col">
                             <div className="nc-input-wrapper nc-span-2">
                                 <label>Nome*</label>
-                                <input type="text" name="nome" className="nc-input" value={formData.nome} onChange={handleChange} required />
+                                <input type="text" className="nc-input" name="nome" value={formData.nome} onChange={handleChange} />
+                            </div>
+                            <div className="nc-input-wrapper">
+                                <label style={{ color: errors.cpf ? 'red' : 'inherit' }}>
+                                    CPF* {errors.cpf && <span>({errors.cpf})</span>}
+                                </label>
+                                <input type="text" className="nc-input" name="cpf" placeholder="000.000.000-00" value={formData.cpf} onChange={handleCpfChange} />
                             </div>
                             <div className="nc-input-wrapper">
                                 <label>Gênero</label>
-                                <select name="genero" className="nc-input" value={formData.genero} onChange={handleChange}>
+                                <select className="nc-input" name="genero" value={formData.genero} onChange={handleChange}>
                                     <option value="">Selecione</option>
                                     <option value="Masculino">Masculino</option>
                                     <option value="Feminino">Feminino</option>
                                 </select>
                             </div>
                             <div className="nc-input-wrapper">
-                                <label>CPF*</label>
-                                <input type="text" name="cpf" className="nc-input" value={formData.cpf} onChange={handleChange} required placeholder="000.000.000-00" />
-                            </div>
-                            <div className="nc-input-wrapper">
                                 <label>Data de nascimento</label>
-                                <input type="text" name="data_nascimento" className="nc-input" placeholder="DD/MM/AAAA" value={formData.data_nascimento} onChange={handleChange} />
+                                <input type="text" className="nc-input" placeholder="__/__/____" name="DataNasc" value={formData.DataNasc} onChange={handleDateChange} />
                             </div>
                         </div>
                     </div>
                 </div>
 
+                {/* Seção Endereço */}
                 <div className="nc-section-block">
                     <h2 className="nc-section-title">Endereço</h2>
                     <div className="nc-endereco-grid">
-                        <div className="nc-input-wrapper nc-span-2">
+                        <div className="nc-input-wrapper">
+                            <label>CEP</label>
+                            <input type="text" className="nc-input" placeholder="00000-000" value={formData.cep} onChange={handleCepChange} />
+                        </div> 
+                        <div className="nc-input-wrapper">
                             <label>Endereço</label>
-                            <input type="text" name="endereco" className="nc-input" value={formData.endereco} onChange={handleChange} />
+                            <input type="text" className="nc-input" name="endereco" value={formData.endereco} onChange={handleChange} />
                         </div>
                         <div className="nc-input-wrapper">
                             <label>Número</label>
-                            <input type="text" name="numero" className="nc-input" value={formData.numero} onChange={handleChange} />
+                            <input type="text" className="nc-input" name="numero" placeholder="Nº" value={formData.numero} onChange={handleNumeroChange} />
                         </div>
                         <div className="nc-input-wrapper">
                             <label>Bairro</label>
-                            <input type="text" name="bairro" className="nc-input" value={formData.bairro} onChange={handleChange} />
+                            <input type="text" className="nc-input" name="bairro" value={formData.bairro} onChange={handleChange} />
                         </div>
                         <div className="nc-input-wrapper">
                             <label>Complemento</label>
-                            <input type="text" name="complemento" className="nc-input" value={formData.complemento} onChange={handleChange} />
+                            <input type="text" className="nc-input" name="complemento" value={formData.complemento} onChange={handleChange} />
                         </div>
                         <div className="nc-input-wrapper">
                             <label>Cidade</label>
-                            <input type="text" name="cidade" className="nc-input" value={formData.cidade} onChange={handleChange} />
+                            <input type="text" className="nc-input" name="cidade" value={formData.cidade} onChange={handleChange} />
                         </div>
                         <div className="nc-input-wrapper">
                             <label>Estado</label>
-                            <input type="text" name="estado" className="nc-input" value={formData.estado} onChange={handleChange} maxLength="2" placeholder="UF" />
+                            <input type="text" className="nc-input" name="estado" placeholder="UF" value={formData.estado} onChange={handleEstadoChange} maxLength={2} />
                         </div>
                     </div>
                 </div>
 
+                {/* Seção Contato */}
                 <div className="nc-section-block">
                     <h2 className="nc-section-title">Informações de contato</h2>
                     <div className="nc-contato-grid">
                         <div className="nc-input-wrapper">
-                            <label>Telefone*</label>
-                            <input type="text" name="telefone" className="nc-input" value={formData.telefone} onChange={handleChange} required />
-                        </div>
-                        <div className="nc-input-wrapper nc-span-2">
                             <label>Email</label>
-                            <input type="email" name="email" className="nc-input" value={formData.email} onChange={handleChange} />
+                            <input type="email" className="nc-input" name="email" value={formData.email} onChange={handleChange} />
+                        </div>
+                        <div className="nc-input-wrapper">
+                            <label>Telefone*</label>
+                            <input type="text" className="nc-input" placeholder="(00) 00000-0000" value={formData.telefone} onChange={handleTelefoneChange} />
                         </div>
                     </div>
                 </div>
 
                 <div className="nc-actions-row">
-                    <button type="submit" className="nc-btn-save">Salvar</button>
-                    <button type="button" className="nc-btn-cancel" onClick={() => router.back()}>Cancelar</button>
+                    <button className="nc-btn-save" onClick={handleSalvar}>Salvar</button>
+                    <button className="nc-btn-cancel">Cancelar</button>
                 </div>
-            </form>
+            </div>
         </div>
     );
 }

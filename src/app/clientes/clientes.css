@@ -1,3 +1,4 @@
+/* Estrutura Geral da Página */
 .cliente-page {
     display: flex;
     flex-direction: column;
@@ -5,20 +6,16 @@
     min-height: 100vh;
 }
 
-
 .cliente-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 1.2rem;
-
     width: 100%;
     max-width: 1400px;
-
     min-height: 100px;
     height: auto;
-
     background-color: white;
     padding: 0 clamp(1rem, 2vw, 2rem);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -32,7 +29,6 @@
     gap: 1.2rem;
     background-color: white;
     min-width: 0;
-
 }
 
 .cliente-container h1 {
@@ -44,23 +40,19 @@
     white-space: nowrap;
 }
 
-
+/* Box de Busca e Novo Cliente */
 .cliente-box {
     width: 100%;
     max-width: 1400px;
-
     height: auto;
     min-height: 170px;
-
     background: white;
     margin: 30px auto;
     border-radius: 4px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-
     display: flex;
     flex-direction: column;
     gap: 12px;
-
     padding: 20px clamp(1rem, 2vw, 30px);
     align-items: flex-start;
     box-sizing: border-box;
@@ -97,6 +89,7 @@
     padding: 6px 10px;
     background-color: white;
     width: 100%;
+    max-width: 600px; /* Limita a largura da barra de busca */
     box-sizing: border-box;
 }
 
@@ -105,80 +98,77 @@
     border: none;
     outline: none;
     background-color: white;
+    font-size: 16px;
 }
 
+/* Container da Lista de Cards */
 .cliente-lista-container {
     width: 100%;
     max-width: 1400px;
-    margin: 0 auto;
+    margin: 0 auto 40px auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     align-items: flex-start;
     box-sizing: border-box;
+    padding: 0 clamp(1rem, 2vw, 2rem); /* Afasta os cards da borda da tela */
 }
 
 .contador-cliente {
     color: #666;
     font-size: 14px;
-    margin-left: 30px;
+    margin-bottom: 5px;
 }
 
 .cliente-card {
     background: white;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
+    border-radius: 8px;
     padding: 20px 30px;
     border: 1px solid #e0e0e0;
     border-left: 10px solid var(--cor-primaria);
-
-    height: 100px;
     width: 100%;
+    /* MUDANÇA CRUCIAL: Mudar height fixo para min-height */
+    min-height: 100px; 
+    height: auto !important; 
+    display: flex;
+    flex-direction: column; /* Faz o conteúdo extra ficar abaixo */
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
-.col-nome {
+.cliente-card-header {
     display: flex;
     align-items: center;
-    min-width: 220px;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.col-nome h2 {
+.cliente-info-principal h2 {
     font-size: 18px;
     color: #333;
-    margin: 0;
-    font-weight: 500;
+    margin: 0 0 4px 0;
+    font-weight: 600;
 }
 
-.col-cpf {
-    display: flex;
-    align-items: center;
-    min-width: 220px;
-}
-
-.col-cpf p {
-    font-size: 12px;
+.cliente-info-principal p {
+    font-size: 13px;
     color: #888;
     margin: 0;
 }
 
-.col-info {
+.cliente-info-secundaria {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    min-width: 260px;
     text-align: left;
 }
 
-.col-info p {
-    font-size: 12px;
+.cliente-info-secundaria p {
+    font-size: 13px;
     color: #666;
     margin: 0;
 }
+
 
 .btn-receita {
     background-color: var(--cor-primaria);
@@ -191,23 +181,60 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.3s ease;
 }
 
 .btn-receita:hover {
     opacity: 0.9;
 }
 
-@media (max-width: 1024px) {
-    .estoque-card {
-        height: auto;
-        gap: 12px;
-        flex-wrap: wrap;
+.cliente-detalhes-extra {
+    margin-top: 15px;
+    padding: 20px 60px; 
+    border-top: 1px solid #eee;
+    width: 100%;
+    background-color: #fafafa; 
+
+    animation: fadeIn 0.4s ease forwards;
+    box-sizing: border-box;
+}
+
+.grid-detalhes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 40px; 
+    text-align: center; 
+}
+
+.grid-detalhes p {
+    font-size: 14px;
+    color: #444;
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+.grid-detalhes strong {
+    color: #222;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .cliente-card-header {
+        flex-direction: column;
         align-items: flex-start;
+        gap: 15px;
     }
 
-    .col-nome,
-    .col-cpf,
-    .col-info {
-        min-width: 0;
+    .btn-receita {
+        align-self: flex-end;
+    }
+
+    .grid-detalhes {
+        grid-template-columns: 1fr;
     }
 }

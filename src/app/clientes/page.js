@@ -1,48 +1,93 @@
-"use client"; 
+"use client";
 
-import { useState, useEffect, useRef } from 'react'; // Adicionado useRef
+import { useState, useEffect, useRef } from 'react';
 import './clientes.css';
 import Link from 'next/link';
 import Image from "next/image";
 import { Inter } from "next/font/google";
 
-const inter = Inter({
-    subsets: ["latin"],
-    weight: ["800"],
-});
+const inter = Inter({ subsets: ["latin"], weight: ["800"] });
 
-function validarCPF(cpf) {
-    cpf = cpf.replace(/[^\d]+/g, '');
-    if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
-    for (let t = 9; t < 11; t++) {
-        let soma = 0;
-        for (let i = 0; i < t; i++) {
-            soma += parseInt(cpf[i]) * (t + 1 - i);
-        }
-        let digito = (soma * 10) % 11;
-        if (digito === 10 || digito === 11) digito = 0;
-        if (digito !== parseInt(cpf[t])) return false;
-    }
-    return true;
+function CardCliente({ cliente }) {
+    const [aberto, setAberto] = useState(false);
+
+    // Função que força a inversão do estado sem interferência
+    const handleToggle = (e) => {
+        e.preventDefault();
+        setAberto(!aberto);
+    };
+
+    return (
+        <div className={`cliente-card ${aberto ? 'card-aberto' : ''}`}>
+            <div className="cliente-card-header">
+                <div className="cliente-info-principal">
+                    <h2>{cliente.nome}</h2>
+                    <p>CPF: {cliente.cpf}</p>
+                </div>
+
+                <div className="cliente-info-secundaria">
+                    <p>Tel: {cliente.telefone || "(34) 99999-9999"}</p>
+                    <p>Email: {cliente.email || "exemplo@gmail.com"}</p> 
+                </div>
+
+                <button 
+                    type="button"
+                    className="btn-receita" 
+                    onClick={handleToggle}
+                >
+                    <svg 
+                        width="24" 
+                        height="24" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        style={{ 
+                            transform: aberto ? 'rotate(180deg)' : 'rotate(0deg)', 
+                            transition: '0.3s' 
+                        }}
+                    >
+                        <path d="M6 9L12 15L18 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </button>
+            </div>
+
+            {/* CONTEÚDO EXPANSÍVEL */}
+            {/* ÁREA EXPANSÍVEL: Agora com os nomes exatos do seu banco */}
+{aberto && (
+    <div className="cliente-detalhes-extra">
+        <div className="divisor-card"></div>
+        <div className="grid-detalhes">
+            <div>
+                {/* Aqui usamos 'Genero' e 'DataNasc' com as iniciais maiúsculas conforme seu SQL */}
+                <p><strong>Gênero:</strong> {cliente.Genero || '-'}</p>
+                <p><strong>Data Nasc:</strong> {cliente.DataNasc ? new Date(cliente.DataNasc).toLocaleDateString('pt-BR') : '-'}</p>
+            </div>
+            <div>
+                {/* 'endereco', 'rua' e 'numero' em minúsculo conforme seu SQL */}
+                <p><strong>Endereço:</strong> {cliente.endereco || '-'}, {cliente.numero || 'S/N'}</p>
+                <p><strong>Rua:</strong> {cliente.rua || '-'}</p>
+            </div>
+            <div>
+                {/* 'Bairro', 'Cidade', 'Estado' e 'CEP' com iniciais maiúsculas conforme seu SQL */}
+                <p><strong>Bairro:</strong> {cliente.Bairro || '-'}</p>
+                <p><strong>Cidade:</strong> {cliente.Cidade || '-'} / {cliente.Estado || '-'}</p>
+                <p><strong>CEP:</strong> {cliente.CEP || '-'}</p>
+            </div>
+        </div>
+    </div>
+)}
+        </div>
+    );
 }
 
 export default function Cliente() {
-    const inputBuscaRef = useRef(null); // Referência para o input
     const [busca, setBusca] = useState('');
     const [clientes, setClientes] = useState([]);
     const [carregando, setCarregando] = useState(true);
 
-    // Função para dar foco no input ao clicar na imagem da lupa
-    const focarInput = () => {
-        if (inputBuscaRef.current) {
-            inputBuscaRef.current.focus();
-        }
-    };
-
     useEffect(() => {
         async function fetchClientes() {
             try {
-                const response = await fetch('/api/clientes');
+                const response = await fetch('http://localhost:3001/cliente');
                 const data = await response.json();
                 setClientes(Array.isArray(data) ? data : []);
             } catch (error) {
@@ -54,13 +99,9 @@ export default function Cliente() {
         fetchClientes();
     }, []);
 
-    const clientesFiltrados = clientes.filter(c => {
-        const termoBusca = busca.toLowerCase();
-        return c.nome?.toLowerCase().includes(termoBusca) || c.cpf?.includes(busca);
-    });
-
-    const isBuscaCpf = /^\d|[\.\-]/.test(busca) && busca.length >= 11;
-    const cpfInvalido = isBuscaCpf && !validarCPF(busca);
+    const clientesFiltrados = clientes.filter(c => 
+        c.nome?.toLowerCase().includes(busca.toLowerCase()) || c.cpf?.includes(busca)
+    );
 
     return (
         <div className="cliente-page">
@@ -75,23 +116,8 @@ export default function Cliente() {
                 <Link href="/clientes/novo">
                     <button className="btn-novo-cliente">Novo Cliente +</button>
                 </Link>
-
-                <label className="label-buscar">
-                    Buscar cliente {cpfInvalido && <span style={{color: 'red', fontSize: '12px'}}> - CPF Inválido</span>}
-                </label>
-
-                <div className={`input-busca ${cpfInvalido ? 'input-erro' : ''}`}>
-                    <Image
-                        src="/search-button-svgrepo-com.svg"
-                        alt="Ícone de busca"
-                        width={22}
-                        height={22}
-                        className="icone-busca"
-                        onClick={focarInput} // Torna a lupa clicável
-                        style={{ cursor: 'pointer' }}
-                    />
+                <div className="input-busca">
                     <input 
-                        ref={inputBuscaRef} // Conecta a referência
                         type="text" 
                         placeholder="Nome ou CPF" 
                         value={busca}
@@ -102,35 +128,11 @@ export default function Cliente() {
 
             <div className="cliente-lista-container">
                 {carregando ? (
-                    <p className="contador-cliente">Carregando dados da Ótica Focal...</p>
+                    <p>Carregando...</p>
                 ) : (
-                    <>
-                        <p className="contador-cliente">
-                            {clientesFiltrados.length === 1 
-                                ? "Foi encontrado 1 cliente" 
-                                : `Foram encontrados ${clientesFiltrados.length} clientes`}
-                        </p>
-
-                        {clientesFiltrados.map(cliente => (
-                            <div key={cliente.id_cliente} className="cliente-card cliente-card--ativo">
-                                <div className="cliente-info-principal">
-                                    <h2>{cliente.nome}</h2>
-                                    <p>CPF: {cliente.cpf}</p>
-                                </div>
-
-                                <div className="cliente-info-secundaria">
-                                    <p>Tel: {cliente.telefone || "Sem telefone"}</p>
-                                    <p>Email: {cliente.email || "Sem e-mail"}</p> 
-                                </div>
-
-                                <button className="btn-receita" aria-label="Ver Detalhes">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M6 9L12 15L18 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </button>
-                            </div>
-                        ))}
-                    </>
+                    clientesFiltrados.map(cliente => (
+                        <CardCliente key={cliente.id_cliente} cliente={cliente} />
+                    ))
                 )}
             </div>
         </div>

@@ -23,14 +23,12 @@ export default function NovoProduto() {
     // Estado com os atributos exatos do seu banco de dados
     const [formData, setFormData] = useState({
         descricao: '',       // Nome do produto
-        tipo: '',            // Unidade (UN/PC)
+        //tipo: '',          // Valor padrão inicial para Unidade
         categoria: '',
         marca: '',
         fornecedor: '',
         preco: '',           // Preço de Venda
         estoque_atual: '',   // Estoque Inicial
-        preco_custo: '',     // Atributo auxiliar
-        referencia: ''       // Atributo auxiliar
     });
 
     const handleDivClick = () => fileInputRef.current.click();
@@ -54,24 +52,58 @@ export default function NovoProduto() {
             newValue = value.replace(/\D/g, '');
         }
 
-        // VALIDAÇÃO: Preço aceita apenas números, ponto e vírgula
-        if (name === 'preco' || name === 'preco_custo') {
+        // VALIDAÇÃO: Preço aceita apenas números e ponto
+        if (name === 'preco') {
             newValue = value.replace(/[^0-9.,]/g, '').replace(',', '.');
         }
 
         setFormData(prev => ({ ...prev, [name]: newValue }));
     };
 
+    // A REQUISIÇÃO POST PARA A API ACONTECE AQUI
     const handleSalvar = async (e) => {
-        e.preventDefault();
-        console.log("Produto pronto para o MySQL:", formData);
-        // Aqui você chamará sua API POST futuramente
+        e.preventDefault(); // Evita que a página recarregue
+        
+        // Validação básica de campos obrigatórios
+        if (!formData.descricao || !formData.preco) {
+            alert("Por favor, preencha o nome do produto e o preço.");
+            return;
+        }
+
+        // Prepara os dados convertendo texto para número onde necessário
+        const payload = {
+            ...formData,
+            preco: parseFloat(formData.preco) || 0,
+            estoque_atual: parseInt(formData.estoque_atual) || 0
+        };
+
+        try {
+            // Faz o POST para a sua API na tabela produto
+            const response = await fetch('http://localhost:3001/produto', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (response.ok) {
+                alert('Produto cadastrado com sucesso!');
+                router.push('/produtos'); // Redireciona de volta para a lista de produtos
+            } else {
+                const erro = await response.json();
+                alert(`Erro ao salvar: ${erro.error || 'Verifique os dados enviados.'}`);
+            }
+        } catch (error) {
+            console.error("Erro na requisição:", error);
+            alert("Erro de conexão. Verifique se a API está rodando na porta 3000.");
+        }
     };
 
     return (
         <div className="novo-produto-container">
             <div className="titulo-produtos">
-                <Image src="/produto.svg" alt="Ícone de produto" width={70} height={70} />
+                <Image src="/Produto.svg" alt="Ícone de produto" width={70} height={70} />
                 <h1 className={inter.className}>Novo Produto</h1>
             </div>
 
@@ -119,13 +151,13 @@ export default function NovoProduto() {
                                 </select>
                             </div>
 
-                            <div className="np-input-wrapper">
+                            {/* <div className="np-input-wrapper">
                                 <label>Unidade</label>
                                 <select name="tipo" className="np-input" value={formData.tipo} onChange={handleChange}>
                                     <option value="UN">UN</option>
                                     <option value="PC">PC</option>
                                 </select>
-                            </div>
+                            </div> */}
 
                             <div className="np-input-wrapper np-span-2">
                                 <label>Fornecedor*</label>
@@ -141,7 +173,7 @@ export default function NovoProduto() {
                         <div className="np-input-wrapper">
                             <label>Preço de Custo</label>
                             <input type="text" name="preco_custo" className="np-input" placeholder="R$ 0,00" value={formData.preco_custo} onChange={handleChange} />
-                        </div>
+                        </div> 
                         <div className="np-input-wrapper">
                             <label>Preço de Venda</label>
                             <input type="text" name="preco" className="np-input" placeholder="R$ 0,00" required value={formData.preco} onChange={handleChange} />
