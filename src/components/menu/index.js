@@ -57,7 +57,7 @@ export function Menu() {
                         width={20}
                         height={20}
                     />
-                    <Link href='/estoque'>
+                    <Link href='/vendas'>
                         Vendas
                     </Link>
                 </li>

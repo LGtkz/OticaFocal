@@ -1,0 +1,292 @@
+.venda-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.venda-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+    width: 100%;
+    max-width: 1400px;
+    min-height: 100px;
+    height: auto;
+    background-color: white;
+    padding: 0 clamp(1rem, 2vw, 2rem);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin: 40px auto 0 auto;
+    box-sizing: border-box;
+}
+
+.titulo-venda {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background-color: white;
+    min-width: 0;
+}
+
+.venda-container h1 {
+    color: var(--cor-primaria);
+    font-size: clamp(22px, 2.2vw, 32px);
+    font-weight: 800;
+    margin: 0;
+    background-color: white;
+    white-space: nowrap;
+}
+
+/* Box de Busca e Novo Cliente */
+.venda-box {
+    width: 100%;
+    max-width: 1400px;
+    height: auto;
+    min-height: 170px;
+    background: white;
+    margin: 30px auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px clamp(1rem, 2vw, 30px);
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.btn-novo-venda {
+    background-color: var(--cor-primaria);
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    width: auto;
+    min-width: 160px;
+    font-size: 16px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-novo-venda:hover {
+    opacity: 0.9;
+}
+
+.label-buscar {
+    font-size: 14px;
+    color: #414141;
+}
+
+.input-busca {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 6px 10px;
+    background-color: white;
+    width: 100%;
+    max-width: 600px; /* Limita a largura da barra de busca */
+    box-sizing: border-box;
+}
+
+.input-busca input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: white;
+    font-size: 16px;
+}
+
+/* Container da Lista de Cards */
+.venda-lista-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 0 clamp(1rem, 2vw, 2rem); /* Afasta os cards da borda da tela */
+}
+
+.contador-venda {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.venda-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px 30px;
+    border: 1px solid #e0e0e0;
+    border-left: 10px solid var(--cor-primaria);
+    width: 100%;
+    /* MUDANÇA CRUCIAL: Mudar height fixo para min-height */
+    min-height: 100px; 
+    height: auto !important; 
+    display: flex;
+    flex-direction: column; /* Faz o conteúdo extra ficar abaixo */
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.venda-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.venda-info-principal h2 {
+    font-size: 18px;
+    color: #333;
+    margin: 0 0 4px 0;
+    font-weight: 600;
+}
+
+.venda-info-principal p {
+    font-size: 13px;
+    color: #888;
+    margin: 0;
+}
+
+.venda-info-secundaria {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+}
+
+.venda-info-secundaria p {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+
+.btn-receita {
+    background-color: var(--cor-primaria);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.btn-receita:hover {
+    opacity: 0.9;
+}
+
+.venda-detalhes-extra {
+    margin-top: 15px;
+    padding: 20px 60px; 
+    border-top: 1px solid #eee;
+    width: 100%;
+    background-color: #fafafa; 
+
+    animation: fadeIn 0.4s ease forwards;
+    box-sizing: border-box;
+}
+
+.grid-detalhes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 40px; 
+    text-align: center; 
+}
+
+.grid-detalhes p {
+    font-size: 14px;
+    color: #444;
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+.grid-detalhes strong {
+    color: #222;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .cliente-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .btn-receita {
+        align-self: flex-end;
+    }
+
+    .grid-detalhes {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+.venda-info-venda{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 260px;
+  text-align: left;
+}
+
+.venda-info-venda p{
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+.venda-info-venda strong{
+  color: #333;
+  font-weight: 600;
+}
+
+
+.venda-status-valor{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 220px;
+  justify-content: flex-end;
+}
+
+.venda-status{
+  background: #1e88e5; 
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 2px;
+}
+
+.venda-valor{
+  font-size: 18px;
+  font-weight: 700;
+  color: #444;
+  white-space: nowrap;
+}
+
+
+
+  .venda-status-valor{
+    justify-content: flex-start;
+  }
+
