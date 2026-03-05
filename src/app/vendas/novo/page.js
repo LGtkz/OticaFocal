@@ -70,21 +70,56 @@ export default function Vendas() {
   function fmtBRL(v) {
     return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
   }
+  // Adicione este campo ao seu estado inicial do formData ou Box 1
+const [idOS, setIdOS] = useState("12"); // Você precisa vincular a uma O.S. existente
 
-  function handleSalvar() {
-    console.log("SALVAR", {
-      cliente,
-      dataVenda,
-      funcionario,
-      formaPagamento,
-      valorPagamento,
-      qtParcela,
-      dataPagamento,
-      valorCarrinho,
-      valorPago,
-      restante,
-    });
+async function handleSalvar() {
+  // 1. Validação básica
+  if (!idOS || !funcionario || !valorPagamento) {
+    alert("Certifique-se de preencher a O.S., o funcionário e o valor.");
+    return;
   }
+
+  try {
+    // PASSO 1: Criar a Venda
+    const resVenda = await fetch('http://localhost:3001/venda', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id_os: parseInt(idOS),
+        id_usuario_fechamento: parseInt(funcionario),
+        valor_final: parseFloat(valorPagamento.replace(',', '.'))
+      })
+    });
+
+    const dadosVenda = await resVenda.json();
+
+    if (!resVenda.ok) throw new Error(dadosVenda.error || "Erro ao criar venda");
+
+    const idVendaGerada = dadosVenda.id; // Pegando o ID da venda criada
+
+    // PASSO 2: Criar o Pagamento vinculado à Venda
+    const resPagamento = await fetch('http://localhost:3001/pagamento', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id_venda: idVendaGerada,
+        tipo_pagamento: formaPagamento,
+        valor: parseFloat(valorPagamento.replace(',', '.'))
+      })
+    });
+
+    if (resPagamento.ok) {
+      alert("Venda e Pagamento registrados com sucesso!");
+      router.push('/vendas');
+    }
+
+  } catch (error) {
+    console.error(error);
+    alert("Falha ao salvar: " + error.message);
+  }
+}
+
 
   function handleCancelar() {
     router.back();
@@ -162,8 +197,8 @@ export default function Vendas() {
               }}
             >
               <option value="">Selecione...</option>
-              <option value="vendedor1">Vendedor 1</option>
-              <option value="vendedor2">Vendedor 2</option>
+              <option value="1">Vendedor 1</option>
+              <option value="2">Vendedor 2</option>
             </select>
 
             {erros.funcionario && <p className="msg-erro">{erros.funcionario}</p>}

@@ -34,9 +34,9 @@ function CardVenda({ venda }) {
                 <div className="venda-status-valor">
                     <span className="venda-status">Vendido</span>
                     <span className="venda-valor">
-                        {typeof venda.valor_total === 'number'
-                        ? venda.valor_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-                        : 'R$0,00'}
+                        {venda.valor_total 
+                        ? Number(venda.valor_total).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                        : 'R$ 0,00'}
                     </span>
                 </div>
 
@@ -97,9 +97,14 @@ export default function Vendas() {
     useEffect(() => {
         async function fetchVendas() {
             try {
-                const response = await fetch('http://localhost:3001/venda');
+                const response = await fetch('http://localhost:3001/vw_vendas_detalhadas');
+                
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar vendas');
+                }
+
                 const data = await response.json();
-                setVendas (Array.isArray(data) ? data : []);
+                setVendas(Array.isArray(data) ? data : []);
             } catch (error) {
                 console.error("Erro ao buscar dados:", error);
             } finally {
