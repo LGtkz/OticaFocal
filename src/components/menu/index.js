@@ -74,6 +74,17 @@ export function Menu() {
                 </li>
                 <li>
                     <Image
+                        src="/userIcon.svg"
+                        alt="Ícone de Funcionários"
+                        width={20}
+                        height={20}
+                    />
+                    <Link href='/funcionarios'>
+                        Funcionários
+                    </Link>
+                </li>
+                <li>
+                    <Image
                         src="/cfgIcon.svg"
                         alt="Ícone de Configurações"
                         width={20}

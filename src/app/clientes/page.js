@@ -27,22 +27,22 @@ function CardCliente({ cliente }) {
 
                 <div className="cliente-info-secundaria">
                     <p>Tel: {cliente.telefone || "(34) 99999-9999"}</p>
-                    <p>Email: {cliente.email || "exemplo@gmail.com"}</p> 
+                    <p>Email: {cliente.email || "exemplo@gmail.com"}</p>
                 </div>
 
-                <button 
+                <button
                     type="button"
-                    className="btn-receita" 
+                    className="btn-receita"
                     onClick={handleToggle}
                 >
-                    <svg 
-                        width="24" 
-                        height="24" 
-                        viewBox="0 0 24 24" 
-                        fill="none" 
-                        style={{ 
-                            transform: aberto ? 'rotate(180deg)' : 'rotate(0deg)', 
-                            transition: '0.3s' 
+                    <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        style={{
+                            transform: aberto ? 'rotate(180deg)' : 'rotate(0deg)',
+                            transition: '0.3s'
                         }}
                     >
                         <path d="M6 9L12 15L18 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -52,29 +52,29 @@ function CardCliente({ cliente }) {
 
             {/* CONTEÚDO EXPANSÍVEL */}
             {/* ÁREA EXPANSÍVEL: Agora com os nomes exatos do seu banco */}
-{aberto && (
-    <div className="cliente-detalhes-extra">
-        <div className="divisor-card"></div>
-        <div className="grid-detalhes">
-            <div>
-                {/* Aqui usamos 'Genero' e 'DataNasc' com as iniciais maiúsculas conforme seu SQL */}
-                <p><strong>Gênero:</strong> {cliente.Genero || '-'}</p>
-                <p><strong>Data Nasc:</strong> {cliente.DataNasc ? new Date(cliente.DataNasc).toLocaleDateString('pt-BR') : '-'}</p>
-            </div>
-            <div>
-                {/* 'endereco', 'rua' e 'numero' em minúsculo conforme seu SQL */}
-                <p><strong>Endereço:</strong> {cliente.endereco || '-'}, {cliente.numero || 'S/N'}</p>
-                <p><strong>Rua:</strong> {cliente.rua || '-'}</p>
-            </div>
-            <div>
-                {/* 'Bairro', 'Cidade', 'Estado' e 'CEP' com iniciais maiúsculas conforme seu SQL */}
-                <p><strong>Bairro:</strong> {cliente.Bairro || '-'}</p>
-                <p><strong>Cidade:</strong> {cliente.Cidade || '-'} / {cliente.Estado || '-'}</p>
-                <p><strong>CEP:</strong> {cliente.CEP || '-'}</p>
-            </div>
-        </div>
-    </div>
-)}
+            {aberto && (
+                <div className="cliente-detalhes-extra">
+                    <div className="divisor-card"></div>
+                    <div className="grid-detalhes">
+                        <div>
+                            {/* Aqui usamos 'Genero' e 'DataNasc' com as iniciais maiúsculas conforme seu SQL */}
+                            <p><strong>Gênero:</strong> {cliente.Genero || '-'}</p>
+                            <p><strong>Data Nasc:</strong> {cliente.DataNasc ? new Date(cliente.DataNasc).toLocaleDateString('pt-BR') : '-'}</p>
+                        </div>
+                        <div>
+                            {/* 'endereco', 'rua' e 'numero' em minúsculo conforme seu SQL */}
+                            <p><strong>Endereço:</strong> {cliente.endereco || '-'}, {cliente.numero || 'S/N'}</p>
+                            <p><strong>Rua:</strong> {cliente.rua || '-'}</p>
+                        </div>
+                        <div>
+                            {/* 'Bairro', 'Cidade', 'Estado' e 'CEP' com iniciais maiúsculas conforme seu SQL */}
+                            <p><strong>Bairro:</strong> {cliente.Bairro || '-'}</p>
+                            <p><strong>Cidade:</strong> {cliente.Cidade || '-'} / {cliente.Estado || '-'}</p>
+                            <p><strong>CEP:</strong> {cliente.CEP || '-'}</p>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
@@ -99,7 +99,7 @@ export default function Cliente() {
         fetchClientes();
     }, []);
 
-    const clientesFiltrados = clientes.filter(c => 
+    const clientesFiltrados = clientes.filter(c =>
         c.nome?.toLowerCase().includes(busca.toLowerCase()) || c.cpf?.includes(busca)
     );
 
@@ -117,9 +117,9 @@ export default function Cliente() {
                     <button className="btn-novo-cliente">Novo Cliente +</button>
                 </Link>
                 <div className="input-busca">
-                    <input 
-                        type="text" 
-                        placeholder="Nome ou CPF" 
+                    <input
+                        type="text"
+                        placeholder="Nome ou CPF"
                         value={busca}
                         onChange={(e) => setBusca(e.target.value)}
                     />
