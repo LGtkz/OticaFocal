@@ -14,7 +14,6 @@ function CardOS({ os, recarregar }) {
     const [editando, setEditando] = useState(false);
     const [dados, setDados] = useState({ ...os });
 
-    // Sincroniza o estado local se a lista for atualizada
     useEffect(() => {
         setDados({ ...os });
     }, [os]);
