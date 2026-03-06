@@ -8,12 +8,49 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], weight: ["800"] });
 
-// SUBCOMPONENTE PARA O CARD DE O.S. (Garante estabilidade ao abrir)
-function CardOS({ os }) {
+
+function CardOS({ os, recarregar }) {
     const [aberto, setAberto] = useState(false);
+    const [editando, setEditando] = useState(false);
+    const [dados, setDados] = useState({ ...os });
+
+    useEffect(() => {
+        setDados({ ...os });
+    }, [os]);
+
+    const handleToggle = () => {
+        setAberto(!aberto);
+        if (editando) setEditando(false);
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setDados(prev => ({ ...prev, [name]: value }));
+    };
+
+    const salvarEdicao = async () => {
+        try {
+            const response = await fetch(`http://localhost:3001/ordem_servico/${os.id_os}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dados)
+            });
+
+            if (response.ok) {
+                alert("Ordem de serviço atualizada!");
+                setEditando(false);
+                recarregar();
+            } else {
+                const erro = await response.json();
+                alert(`Erro: ${erro.error}`);
+            }
+        } catch (error) {
+            console.error("Erro na requisição:", error);
+        }
+    };
 
     return (
-        <div className="cliente-card" style={{ 
+        <div className={`cliente-card ${aberto ? 'card-aberto' : ''}`} style={{ 
             borderLeftColor: os.status === 'Aberta' ? '#2ecc71' : '#e74c3c',
             height: aberto ? 'auto' : '100px',
             flexDirection: 'column',
@@ -26,36 +63,85 @@ function CardOS({ os }) {
                 </div>
 
                 <div className="cliente-info-secundaria">
-                    <p>Status: <strong>{os.status || 'Não informado'}</strong></p>
+                    <p>Status: {editando ? (
+                        <select name="status" value={dados.status} onChange={handleChange} className="input-inline">
+                            <option value="Aberta">Aberta</option>
+                            <option value="Finalizada">Finalizada</option>
+                            <option value="Cancelada">Cancelada</option>
+                        </select>
+                    ) : (
+                        <strong>{os.status || 'Não informado'}</strong>
+                    )}</p>
                     <p>Abertura: {os.data_abertura ? new Date(os.data_abertura).toLocaleDateString('pt-BR') : '-'}</p>
                 </div>
 
                 <div className="cliente-info-secundaria" style={{ minWidth: '150px' }}>
-                    <p>Total: R$ {Number(os.valor_total || 0).toFixed(2)}</p>
-                    <p>Entrada: R$ {Number(os.valor_entrada || 0).toFixed(2)}</p>
+                    <p>Total: R$ {editando ? (
+                        <input type="number" name="valor_total" value={dados.valor_total} onChange={handleChange} className="input-inline-number" />
+                    ) : Number(os.valor_total || 0).toFixed(2)}</p>
+                    
+                    <p>Entrada: R$ {editando ? (
+                        <input type="number" name="valor_entrada" value={dados.valor_entrada} onChange={handleChange} className="input-inline-number" />
+                    ) : Number(os.valor_entrada || 0).toFixed(2)}</p>
                 </div>
 
-                <button 
-                    type="button"
-                    className="btn-receita" 
-                    onClick={() => setAberto(!aberto)}
-                    style={{ transform: aberto ? 'rotate(180deg)' : 'rotate(0deg)', transition: '0.3s' }}
-                >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M6 9L12 15L18 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                </button>
+                <div className="os-acoes" style={{ display: 'flex', gap: '10px' }}>
+                    <button 
+                        type="button" 
+                        className="btn-editar-inline" 
+                        onClick={() => setEditando(!editando)}
+                    >
+                        {editando ? "✖" : "✏️"}
+                    </button>
+                    
+                    <button 
+                        type="button"
+                        className="btn-receita" 
+                        onClick={handleToggle}
+                        style={{ transform: aberto ? 'rotate(180deg)' : 'rotate(0deg)', transition: '0.3s' }}
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+                </div>
             </div>
 
-            {/* DETALHES DA O.S. (Aparecem ao expandir) */}
             {aberto && (
                 <div style={{ marginTop: '15px', paddingTop: '15px', borderTop: '1px solid #eee' }}>
                     <p style={{ fontSize: '14px', color: '#444' }}>
-                        <strong>Observações:</strong> {os.observacao || 'Nenhuma observação cadastrada.'}
+                        <strong>Observações:</strong> 
+                        {editando ? (
+                            <textarea 
+                                name="observacao" 
+                                value={dados.observacao} 
+                                onChange={handleChange} 
+                                className="nos-textarea"
+                                style={{ width: '100%', marginTop: '5px' }}
+                            />
+                        ) : (
+                            ` ${os.observacao || 'Nenhuma observação cadastrada.'}`
+                        )}
                     </p>
                     <p style={{ fontSize: '14px', color: '#444', marginTop: '10px' }}>
-                        <strong>Data de Entrega Prevista:</strong> {os.data_entrega ? new Date(os.data_entrega).toLocaleDateString('pt-BR') : 'Não informada'}
+                        <strong>Data de Entrega Prevista:</strong> 
+                        {editando ? (
+                            <input 
+                                type="date" 
+                                name="data_entrega" 
+                                value={dados.data_entrega ? dados.data_entrega.split('T')[0] : ''} 
+                                onChange={handleChange} 
+                            />
+                        ) : (
+                            ` ${os.data_entrega ? new Date(os.data_entrega).toLocaleDateString('pt-BR') : 'Não informada'}`
+                        )}
                     </p>
+
+                    {editando && (
+                        <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', marginTop: '15px' }}>
+                            <button onClick={salvarEdicao} className="btn-salvar-confirmar">Salvar Alterações</button>
+                        </div>
+                    )}
                 </div>
             )}
         </div>
@@ -70,18 +156,19 @@ export default function OrdemServico() {
 
     const focarInput = () => inputBuscaRef.current?.focus();
 
-    useEffect(() => {
-        async function fetchOS() {
-            try {
-                const response = await fetch('http://localhost:3001/ordem_servico');
-                const data = await response.json();
-                setOrdens(Array.isArray(data) ? data : []);
-            } catch (error) {
-                console.error("Erro ao carregar ordens de serviço:", error);
-            } finally {
-                setCarregando(false);
-            }
+    const fetchOS = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/ordem_servico');
+            const data = await response.json();
+            setOrdens(Array.isArray(data) ? data : []);
+        } catch (error) {
+            console.error("Erro ao carregar ordens de serviço:", error);
+        } finally {
+            setCarregando(false);
         }
+    };
+
+    useEffect(() => {
         fetchOS();
     }, []);
 
@@ -132,7 +219,7 @@ export default function OrdemServico() {
                         </p>
 
                         {ordensFiltradas.map(os => (
-                            <CardOS key={os.id_os} os={os} />
+                            <CardOS key={os.id_os} os={os} recarregar={fetchOS} />
                         ))}
                     </>
                 )}
