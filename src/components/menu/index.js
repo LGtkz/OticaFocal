@@ -1,8 +1,16 @@
+"use client";
 import Link from "next/link";
 import './menu.css';
 import Image from 'next/image';
+import { usePathname } from "next/navigation";
 
 export function Menu() {
+    const pathname = usePathname();
+    
+    // Esconde o menu na página de login
+    if (pathname === '/login') {
+        return null;
+    }
     return (
         <nav>
             <ul>
