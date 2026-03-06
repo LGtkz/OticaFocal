@@ -1,3 +1,4 @@
+/* Estrutura Geral da Página */
 .ordem-servico-page {
     display: flex;
     flex-direction: column;
@@ -5,20 +6,16 @@
     min-height: 100vh;
 }
 
-
 .ordem-servico-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     gap: 1.2rem;
-
     width: 100%;
     max-width: 1400px;
-
     min-height: 100px;
     height: auto;
-
     background-color: white;
     padding: 0 2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -32,7 +29,6 @@
     gap: 1.2rem;
     background-color: white;
     min-width: 0;
-
 }
 
 .ordem-servico-container h1 { 
@@ -44,22 +40,19 @@
     white-space: nowrap;
 }
 
+
 .ordem-servico-box {
     width: 100%;
     max-width: 1400px;
-
     height: auto;
     min-height: 170px;
-
     background: white;
     margin: 30px auto;
     border-radius: 4px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-
     display: flex;
     flex-direction: column;
     gap: 12px;
-
     padding: 20px clamp(1rem, 2vw, 30px);
     align-items: flex-start;
     box-sizing: border-box;
@@ -76,15 +69,6 @@
     font-size: 16px;
     cursor: pointer;
     white-space: nowrap;
-}
-
-.btn-nova-ordem-servico:hover {
-    opacity: 0.9;
-}
-
-.label-buscar {
-    font-size: 14px;
-    color: #414141;
 }
 
 .input-busca {
@@ -106,6 +90,7 @@
     background-color: white;
 }
 
+
 .os-lista-container {
     width: 100%;
     max-width: 1400px;
@@ -113,54 +98,51 @@
     flex-direction: column;
     gap: 15px;
     padding: 0 clamp(1rem, 2vw, 2rem);
-    /* align-items: flex-start; */ /* COMENTÁRIO CORRIGIDO AQUI */
     margin: 0 auto 40px auto;
     box-sizing: border-box;
 }
 
-.contador-clientes {
-    color: #666;
-    font-size: 14px;
-    margin-left: 30px;
-
-}
 
 .cliente-card {
     background: white;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    border-radius: 8px; 
     padding: 20px 30px;
     border: 1px solid #e0e0e0;
     border-left: 10px solid var(--cor-primaria);
-    height: 100px;
     width: 100%;
-    box-sizing: border-box;
-}
-
-.cliente-info-principal h2 {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 4px;
-    font-weight: 500;
-}
-
-.cliente-info-principal p {
-    font-size: 12px;
-    color: #888;
-}
-
-.cliente-info-secundaria {
+    min-height: 100px; 
+    height: auto !important; 
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    flex-direction: column; 
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.cliente-info-secundaria p {
-    font-size: 12px;
-    color: #666;
+.cliente-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.os-acoes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-editar-inline {
+    background: #4a5568;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-receita {
@@ -174,9 +156,55 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 0;
 }
 
-.btn-receita:hover {
-    opacity: 0.9;
+
+.input-inline {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 4px;
+    font-size: 14px;
+}
+
+.input-inline-number {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 4px;
+    width: 90px;
+}
+
+.area-salvar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px dashed #ddd;
+}
+
+.btn-salvar-confirmar {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-salvar-confirmar:hover {
+    background-color: #27ae60;
+}
+
+
+.nos-textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+    resize: vertical;
+    font-family: inherit;
 }
