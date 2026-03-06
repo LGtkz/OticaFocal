@@ -2,11 +2,16 @@
 
 import Image from 'next/image';
 import './header.css';
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export function Header() {
-
-const router = useRouter();
+    const router = useRouter();
+    const pathname = usePathname();
+    
+    // Esconde o header na página de login
+    if (pathname === '/login') {
+        return null;
+    }
     return (
         <div className='header'>
             <div className='icones'>
