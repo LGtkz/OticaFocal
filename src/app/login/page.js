@@ -1,28 +1,43 @@
 "use client";
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation'; // Importação correta
 import './login.css';
 
 export default function Login() {
+    const router = useRouter(); // <--- VOCÊ PRECISA DISSO AQUI!
     const [cpf, setCpf] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
 
         if (!cpf || !password) {
             setError('Por favor, preencha todos os campos');
             return;
         }
 
-        if (!validarCPF(cpf)) {
-            setError('CPF inválido');
-            return;
-        }
 
-        // Aqui você implementaria a lógica de autenticação
-        console.log('Login:', { cpf, password });
-        setError('');
+        try {
+            const response = await fetch('http://localhost:3001/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ cpf: cpf, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(`Bem-vindo, ${data.user.nome}!`);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                router.push('/'); // Agora o router está definido e funcionará
+            } else {
+                setError(data.error || 'Falha na autenticação');
+            }
+        } catch (err) {
+            setError('Erro de conexão com o servidor.');
+        }
     };
 
     const aplicarMascaraCPF = (valor) => {

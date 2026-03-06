@@ -1,17 +1,14 @@
 const express = require('express');
 const db = require('./conexao'); 
+const bcrypt = require('bcrypt'); // 1. Garanta que o bcrypt está no topo
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-
-const cors = require('cors');
 app.use(cors());
 
-app.get('/', (req, res) => {
-    res.send('API funcionando!');
-});
-// dic para mapear a tabela e suas cheves primarias, usado p/ generalização das requisições
+// dic para mapear a tabela e suas cheves primarias
 const tabelaMap = {
     'usuario': 'id_usuario',
     'cliente': 'id_cliente',
@@ -23,7 +20,31 @@ const tabelaMap = {
     'vw_vendas_detalhadas': 'id_venda',
     'pagamento': 'id_pagamento'
 };
-// validação de existencia da tabela
+
+// --- ROTA DE LOGIN (DEVE VIR ANTES DAS ROTAS GENÉRICAS) ---
+app.post('/login', async (req, res) => {
+    const { cpf, password } = req.body;
+
+    try {
+        const [rows] = await db.query('SELECT * FROM usuario WHERE cpf = ?', [cpf]);
+        
+        if (rows.length === 0) {
+            return res.status(401).json({ error: 'Usuário não encontrado.' });
+        }
+
+        const usuario = rows[0];
+        
+        // Compara a senha digitada com o hash do banco
+        const senhaValida = await bcrypt.compare(password, usuario.senha);
+        if (!senhaValida) return res.status(401).json({ error: 'Senha incorreta.' });
+
+        res.json({ user: { nome: usuario.nome, perfil: usuario.perfil } });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Middleware de validação (para rotas genéricas)
 function validarTabela(req, res, next) {
     const tabela = req.params.tabela.toLowerCase();
     if (!tabelaMap[tabela]) {
@@ -32,6 +53,32 @@ function validarTabela(req, res, next) {
     req.chavePrimaria = tabelaMap[tabela];
     next();
 }
+
+// --- ROTAS GENÉRICAS (GET, POST, PUT, DELETE) ---
+// Certifique-se de NÃO ter um app.post('/:tabela') repetido abaixo deste
+app.post('/:tabela', validarTabela, async (req, res) => {
+    const tabela = req.params.tabela.toLowerCase(); 
+    const dados = req.body;
+
+    if (tabela === 'usuario' && dados.senha) {
+        const saltRounds = 10;
+        dados.senha = await bcrypt.hash(dados.senha, saltRounds);
+    }
+
+    const colunas = Object.keys(dados);
+    const valores = Object.values(dados);
+    const placeholders = colunas.map(() => '?').join(', ');
+
+    try {
+        const sql = `INSERT INTO ?? (${colunas.join(', ')}) VALUES (${placeholders})`; 
+        const [result] = await db.query(sql, [tabela, ...valores]);
+        res.status(201).json({ message: 'Criado com sucesso', id: result.insertId});
+    } catch(error) {
+        res.status(500).json({ error: error.message }); 
+    }
+});
+
+
 // Cunsulta de todos os dados na tabela
 app.get('/:tabela', validarTabela, async (req, res) => {
     const tabela = req.params.tabela; 
