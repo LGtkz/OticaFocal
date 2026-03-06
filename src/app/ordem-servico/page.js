@@ -8,12 +8,13 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], weight: ["800"] });
 
-
+// SUBCOMPONENTE PARA O CARD DE O.S. COM EDIÇÃO INLINE
 function CardOS({ os, recarregar }) {
     const [aberto, setAberto] = useState(false);
     const [editando, setEditando] = useState(false);
     const [dados, setDados] = useState({ ...os });
 
+    // Sincroniza o estado local se a lista for atualizada
     useEffect(() => {
         setDados({ ...os });
     }, [os]);
@@ -52,10 +53,14 @@ function CardOS({ os, recarregar }) {
     return (
         <div className={`cliente-card ${aberto ? 'card-aberto' : ''}`} style={{ 
             borderLeftColor: os.status === 'Aberta' ? '#2ecc71' : '#e74c3c',
-            height: aberto ? 'auto' : '100px',
+            height: 'auto', 
+            minHeight: '100px',
             flexDirection: 'column',
-            alignItems: 'stretch'
+            alignItems: 'stretch',
+            display: 'flex',
+            transition: 'all 0.3s ease'
         }}>
+            {/* HEADER DO CARD */}
             <div className="cliente-card-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                 <div className="cliente-info-principal">
                     <h2>{os.nome_cliente || `Cliente ID: ${os.id_cliente}`}</h2>
@@ -77,19 +82,23 @@ function CardOS({ os, recarregar }) {
 
                 <div className="cliente-info-secundaria" style={{ minWidth: '150px' }}>
                     <p>Total: R$ {editando ? (
-                        <input type="number" name="valor_total" value={dados.valor_total} onChange={handleChange} className="input-inline-number" />
+                        <input type="number" name="valor_total" value={dados.valor_total} onChange={handleChange} className="input-inline-number" style={{ width: '80px' }} />
                     ) : Number(os.valor_total || 0).toFixed(2)}</p>
                     
                     <p>Entrada: R$ {editando ? (
-                        <input type="number" name="valor_entrada" value={dados.valor_entrada} onChange={handleChange} className="input-inline-number" />
+                        <input type="number" name="valor_entrada" value={dados.valor_entrada} onChange={handleChange} className="input-inline-number" style={{ width: '80px' }} />
                     ) : Number(os.valor_entrada || 0).toFixed(2)}</p>
                 </div>
 
-                <div className="os-acoes" style={{ display: 'flex', gap: '10px' }}>
+                
+                <div className="os-acoes" style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                     <button 
                         type="button" 
                         className="btn-editar-inline" 
-                        onClick={() => setEditando(!editando)}
+                        onClick={() => {
+                            setEditando(!editando);
+                            if (!aberto) setAberto(true); 
+                        }}
                     >
                         {editando ? "✖" : "✏️"}
                     </button>
@@ -117,7 +126,7 @@ function CardOS({ os, recarregar }) {
                                 value={dados.observacao} 
                                 onChange={handleChange} 
                                 className="nos-textarea"
-                                style={{ width: '100%', marginTop: '5px' }}
+                                style={{ width: '100%', marginTop: '5px', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
                             />
                         ) : (
                             ` ${os.observacao || 'Nenhuma observação cadastrada.'}`
@@ -131,6 +140,7 @@ function CardOS({ os, recarregar }) {
                                 name="data_entrega" 
                                 value={dados.data_entrega ? dados.data_entrega.split('T')[0] : ''} 
                                 onChange={handleChange} 
+                                style={{ padding: '4px', border: '1px solid #ccc', borderRadius: '4px' }}
                             />
                         ) : (
                             ` ${os.data_entrega ? new Date(os.data_entrega).toLocaleDateString('pt-BR') : 'Não informada'}`
@@ -139,7 +149,9 @@ function CardOS({ os, recarregar }) {
 
                     {editando && (
                         <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', marginTop: '15px' }}>
-                            <button onClick={salvarEdicao} className="btn-salvar-confirmar">Salvar Alterações</button>
+                            <button onClick={salvarEdicao} className="btn-salvar-confirmar">
+                                Salvar Alterações
+                            </button>
                         </div>
                     )}
                 </div>
