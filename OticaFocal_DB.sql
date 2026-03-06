@@ -8,6 +8,17 @@ CREATE TABLE Usuario (
     perfil VARCHAR(30) NOT NULL 
 );
 
+
+ALTER TABLE usuario ADD COLUMN DataNasc DATE;
+ALTER TABLE usuario ADD COLUMN telefone VARCHAR(20);
+ALTER TABLE usuario ADD COLUMN endereco VARCHAR(100);
+ALTER TABLE usuario ADD COLUMN cargo VARCHAR(30);
+ALTER TABLE usuario ADD COLUMN salario DOUBLE;
+
+ALTER TABLE usuario ADD COLUMN cpf VARCHAR(14);
+UPDATE usuario SET cpf = '100.000.000-00' WHERE id_usuario = 1;
+ALTER TABLE usuario MODIFY COLUMN cpf VARCHAR(14) NOT NULL UNIQUE;
+
 CREATE TABLE Cliente (
     id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -15,6 +26,15 @@ CREATE TABLE Cliente (
     telefone VARCHAR(20),
     email VARCHAR(100)
 );
+ALTER TABLE Cliente ADD COLUMN Genero VARCHAR(100);
+ALTER TABLE Cliente ADD COLUMN DataNasc DATE;
+ALTER TABLE Cliente ADD COLUMN endereco VARCHAR(100);
+ALTER TABLE Cliente ADD COLUMN rua VARCHAR(100);
+ALTER TABLE Cliente ADD COLUMN numero INT;
+ALTER TABLE Cliente ADD COLUMN Bairro VARCHAR(50);
+ALTER TABLE Cliente ADD COLUMN Complemento VARCHAR(100);
+ALTER TABLE Cliente ADD COLUMN Cidade VARCHAR(100);
+ALTER TABLE Cliente ADD COLUMN Estado VARCHAR(2);
 
 
 CREATE TABLE Produto (
@@ -24,6 +44,10 @@ CREATE TABLE Produto (
     preco DECIMAL(10, 2) NOT NULL,
     estoque_atual INT DEFAULT 0
 );
+
+ALTER TABLE Produto ADD COLUMN Categoria VARCHAR(50);
+ALTER TABLE Produto ADD COLUMN Marca VARCHAR(50);
+ALTER TABLE Produto ADD COLUMN Fornecedor VARCHAR(50);
 
 CREATE TABLE Receita_Oftalmologica (
     id_receita INT AUTO_INCREMENT PRIMARY KEY,
@@ -79,19 +103,6 @@ CREATE TABLE Pagamento (
     FOREIGN KEY (id_venda) REFERENCES Venda(id_venda)
 );
 
-ALTER TABLE Cliente ADD COLUMN Genero VARCHAR(100);
-ALTER TABLE Cliente ADD COLUMN DataNasc DATE;
-ALTER TABLE Cliente ADD COLUMN endereco VARCHAR(100);
-ALTER TABLE Cliente ADD COLUMN rua VARCHAR(100);
-ALTER TABLE Cliente ADD COLUMN numero INT;
-ALTER TABLE Cliente ADD COLUMN Bairro VARCHAR(50);
-ALTER TABLE Cliente ADD COLUMN Complemento VARCHAR(100);
-ALTER TABLE Cliente ADD COLUMN Cidade VARCHAR(100);
-ALTER TABLE Cliente ADD COLUMN Estado VARCHAR(2);
-
-ALTER TABLE Produto ADD COLUMN Categoria VARCHAR(50);
-ALTER TABLE Produto ADD COLUMN Marca VARCHAR(50);
-ALTER TABLE Produto ADD COLUMN Fornecedor VARCHAR(50);
 
 CREATE VIEW vw_ordem_servico AS
 SELECT 
@@ -121,19 +132,11 @@ SELECT
 JOIN Ordem_Servico os ON v.id_os = os.id_os
 JOIN Cliente c ON os.id_cliente = c.id_cliente;
 
-
-
-
-
-
-
-
-
-SELECT * FROM ordem_servico;
-
+SELECT * FROM usuario;
+SELECT cpf FROM usuario WHERE nome LIKE '%Rafael%';
 INSERT INTO Usuario VALUES (2,'Leo_Bahia','1','2','3');
 
-
+DELETE FROM usuario WHERE cpf = '123.456.789-09';
 INSERT INTO Cliente (nome, cpf, telefone, email, Genero, DataNasc, endereco, rua, numero, Bairro, Cidade, Estado) 
 VALUES 
 ('Rafael Vinícius', '111.222.333-44', '(34) 99999-1111', 'rafael@email.com', 'Masculino', '1995-03-10', 'Casa', 'Rua das Flores', 100, 'Centro', 'Uberlândia', 'MG'),
