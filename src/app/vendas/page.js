@@ -11,7 +11,6 @@ const inter = Inter({ subsets: ["latin"], weight: ["800"] });
 function CardVenda({ venda }) {
     const [aberto, setAberto] = useState(false);
 
-    // Função que força a inversão do estado sem interferência
     const handleToggle = (e) => {
         e.preventDefault();
         setAberto(!aberto);
@@ -25,14 +24,14 @@ function CardVenda({ venda }) {
                     <p>CPF: {venda.cpf}</p>
                 </div>
 
-               <div className="venda-info-venda">
+                <div className="venda-info-venda">
                     <p><strong>Nº Venda:</strong> {venda.id_venda ?? '-'}</p>
                     <p><strong>Data Venda:</strong> {venda.data_venda ? new Date(venda.data_venda).toLocaleDateString('pt-BR') : '-'}</p>
-                    <p><strong>O.S. Selecionadas:</strong> {venda.os_selecionadas ?? '-'}</p>
-                 </div>
+                    <p><strong>O.S. Selecionada:</strong> {venda.os_selecionadas ?? '-'}</p>
+                </div>
 
                 <div className="venda-status-valor">
-                    <span className="venda-status">Vendido</span>
+                    <span className="venda-status">Finalizada</span>
                     <span className="venda-valor">
                         {venda.valor_total 
                         ? Number(venda.valor_total).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
@@ -60,31 +59,26 @@ function CardVenda({ venda }) {
                 </button>
             </div>
 
-            {/* CONTEÚDO EXPANSÍVEL */}
-            {/* ÁREA EXPANSÍVEL: Agora com os nomes exatos do seu banco */}
-{aberto && (
-    <div className="venda-detalhes-extra">
-        <div className="divisor-card"></div>
-        <div className="grid-detalhes">
-            <div>
-                {/* Aqui usamos 'Genero' e 'DataNasc' com as iniciais maiúsculas conforme seu SQL */}
-                <p><strong>Gênero:</strong> {venda.Genero || '-'}</p>
-                <p><strong>Data Nasc:</strong> {venda.DataNasc ? new Date(venda.DataNasc).toLocaleDateString('pt-BR') : '-'}</p>
-            </div>
-            <div>
-                {/* 'endereco', 'rua' e 'numero' em minúsculo conforme seu SQL */}
-                <p><strong>Endereço:</strong> {venda.endereco || '-'}, {venda.numero || 'S/N'}</p>
-                <p><strong>Rua:</strong> {venda.rua || '-'}</p>
-            </div>
-            <div>
-                {/* 'Bairro', 'Cidade', 'Estado' e 'CEP' com iniciais maiúsculas conforme seu SQL */}
-                <p><strong>Bairro:</strong> {venda.Bairro || '-'}</p>
-                <p><strong>Cidade:</strong> {venda.Cidade || '-'} / {venda.Estado || '-'}</p>
-                <p><strong>CEP:</strong> {venda.CEP || '-'}</p>
-            </div>
-        </div>
-    </div>
-)}
+            {/* CONTEÚDO EXPANSÍVEL: Agora focado em informações da VENDA */}
+            {aberto && (
+                <div className="venda-detalhes-extra">
+                    <div className="divisor-card"></div>
+                    <div className="grid-detalhes">
+                        <div>
+                            <p><strong>Vendedor:</strong> {venda.funcionario_nome || 'Não informado'}</p>
+                            <p><strong>ID Usuário:</strong> {venda.id_usuario_fechamento || '-'}</p>
+                        </div>
+                        <div>
+                            <p><strong>Forma de Pagamento:</strong> {venda.tipo_pagamento || 'Pendente'}</p>
+                            <p><strong>Status Pagamento:</strong> Concluído</p>
+                        </div>
+                        <div>
+                            <p><strong>ID Cliente:</strong> {venda.id_cliente || '-'}</p>
+                            <p><strong>E-mail:</strong> {venda.email || '-'}</p>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

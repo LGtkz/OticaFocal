@@ -27,6 +27,7 @@ const cenarios = [
         valorEsperadoAtualizacao: 'Otinha Querubin'
     }
 ];
+
 // Apaga todos os dados antes de cada teste
 async function limparBanco() {
     const tabelas = ['pagamento', 'venda', 'item_os', 'ordem_servico', 'receita_oftalmologica', 'produto', 'cliente', 'usuario'];
@@ -344,3 +345,4 @@ describe('Testes Integração', () => {
         });
     });
 });
+

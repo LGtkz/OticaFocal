@@ -70,8 +70,8 @@ export default function Vendas() {
   function fmtBRL(v) {
     return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
   }
-  // Adicione este campo ao seu estado inicial do formData ou Box 1
-const [idOS, setIdOS] = useState("12"); // Você precisa vincular a uma O.S. existente
+  
+const [idOS, setIdOS] = useState("");
 
 async function handleSalvar() {
   // 1. Validação básica
@@ -138,26 +138,37 @@ async function handleSalvar() {
 
       {/* ===== BOX 1: DADOS DO CLIENTE ===== */}
       <form className="nova-venda-box" onSubmit={handleSubmit}>
-        <div className="box-titulo">Dados do Cliente</div>
+  <div className="box-titulo">Dados da Venda</div>
 
-        <div className="grid-campos">
-          <div className="campo">
-            <label className="label">
-              Pesquisar Cliente<span className="obrigatorio">*</span>
-            </label>
+  <div className="grid-campos">
+    {/* NOVO CAMPO: NÚMERO DA O.S. */}
+    <div className="campo">
+      <label className="label">
+        Número da O.S.<span className="obrigatorio">*</span>
+      </label>
+      <div className="input-icone">
+        <input
+          type="number"
+          placeholder="Digite o número da O.S."
+          value={idOS}
+          onChange={(e) => setIdOS(e.target.value)} 
+        />
+      </div>
+    </div>
 
-            <div className={`input-icone ${erros.cliente ? "input-erro" : ""}`}>
-              <input
-                type="text"
-                placeholder="Pesquisar cliente..."
-                value={cliente}
-                onChange={(e) => setCliente(e.target.value)} />
-
-
-            </div>
-
-            {erros.cliente && <p className="msg-erro">{erros.cliente}</p>}
-          </div>
+    <div className="campo">
+      <label className="label">
+        Pesquisar Cliente<span className="obrigatorio">*</span>
+      </label>
+      <div className={`input-icone ${erros.cliente ? "input-erro" : ""}`}>
+        <input
+          type="text"
+          placeholder="Pesquisar cliente..."
+          value={cliente}
+          onChange={(e) => setCliente(e.target.value)} />
+      </div>
+      {erros.cliente && <p className="msg-erro">{erros.cliente}</p>}
+    </div>
 
           <div className="campo">
             <label className="label">
