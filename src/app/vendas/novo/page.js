@@ -126,10 +126,10 @@ async function handleSalvar() {
   }
 
   return (
-    <div className="venda-page">
+    <><div className="venda-page">
       <div className="venda-container">
         <div className="titulo-venda">
-          <div style={{ background: "#000", padding: 10, display: "inline-block" }}>
+          <div style={{ background: "#374151", padding: 10, display: "inline-block" }}>
             <img src="/estoque.svg" alt="Ícone" width={50} height={50} />
           </div>
           <h1 className={inter.className}>Vendas</h1>
@@ -151,12 +151,9 @@ async function handleSalvar() {
                 type="text"
                 placeholder="Pesquisar cliente..."
                 value={cliente}
-                onChange={(e) => setCliente(e.target.value)}
-              />
+                onChange={(e) => setCliente(e.target.value)} />
 
-              <button type="button" className="btn-mais" aria-label="Adicionar cliente">
-                +
-              </button>
+
             </div>
 
             {erros.cliente && <p className="msg-erro">{erros.cliente}</p>}
@@ -175,9 +172,8 @@ async function handleSalvar() {
                 onChange={(e) => {
                   setDataVenda(e.target.value);
                   setErros((prev) => ({ ...prev, dataVenda: "" }));
-                }}
-                onBlur={handleBlurData}
-              />
+                } }
+                onBlur={handleBlurData} />
             </div>
 
             {erros.dataVenda && <p className="msg-erro">{erros.dataVenda}</p>}
@@ -194,7 +190,7 @@ async function handleSalvar() {
               onChange={(e) => {
                 setFuncionario(e.target.value);
                 setErros((prev) => ({ ...prev, funcionario: "" }));
-              }}
+              } }
             >
               <option value="">Selecione...</option>
               <option value="1">Vendedor 1</option>
@@ -220,9 +216,7 @@ async function handleSalvar() {
 
             <div className="input-icone">
               <input type="text" placeholder="Pesquisar Produto" />
-              <button type="button" className="btn-mais" aria-label="Adicionar produto">
-                +
-              </button>
+
             </div>
           </div>
 
@@ -242,9 +236,6 @@ async function handleSalvar() {
 
             <div className="quantidade-wrap">
               <input className="quantidade-input" type="number" min="1" defaultValue="1" />
-              <button type="button" className="quantidade-btn">
-                +
-              </button>
             </div>
           </div>
 
@@ -293,8 +284,7 @@ async function handleSalvar() {
               <input
                 type="text"
                 value={valorPagamento}
-                onChange={(e) => setValorPagamento(e.target.value)}
-              />
+                onChange={(e) => setValorPagamento(e.target.value)} />
             </div>
           </div>
 
@@ -305,8 +295,7 @@ async function handleSalvar() {
               type="number"
               min="1"
               value={qtParcela}
-              onChange={(e) => setQtParcela(e.target.value)}
-            />
+              onChange={(e) => setQtParcela(e.target.value)} />
           </div>
 
           <div className="campo">
@@ -316,8 +305,7 @@ async function handleSalvar() {
                 type="date"
                 value={dataPagamento}
                 max={hojeISO}
-                onChange={(e) => setDataPagamento(e.target.value)}
-              />
+                onChange={(e) => setDataPagamento(e.target.value)} />
             </div>
           </div>
 
@@ -340,6 +328,10 @@ async function handleSalvar() {
           Cancelar
         </button>
       </div>
+      <div className="footer">
+        <p>© 2024 Otica Focal. Todos os direitos reservados.</p>
+      </div>
     </div>
+    </>
   );
 }

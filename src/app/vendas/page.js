@@ -122,7 +122,7 @@ export default function Vendas() {
        <div className="venda-page">
       <div className="venda-container">
         <div className="titulo-venda">
-          <div style={{ background: "#000", padding: 10, display: "inline-block" }}>
+          <div style={{ background: "#374151", padding: 10, display: "inline-block" }}>
             <img src="/estoque.svg" alt="Ícone" width={50} height={50} />
           </div>
           <h1 className={inter.className}>Vendas</h1>
