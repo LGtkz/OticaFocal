@@ -224,6 +224,74 @@
     opacity: 0.9;
 }
 
+/* Container de botões à direita */
+.produto-acoes {
+    display: flex;
+    flex-direction: row; /* Garante que fiquem lado a lado */
+    align-items: center;
+    gap: 10px;
+}
+
+
+.btn-editar-inline {
+    background: #4a5568;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.btn-editar-inline:hover {
+    background: #2d3748;
+}
+
+
+.produto-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.input-inline {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 4px 8px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.input-inline-number {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 4px;
+    width: 80px;
+}
+
+.area-salvar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.btn-salvar-confirmar {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 .produto-info-principal h2 {
     font-size: 18px;
     color: #333;
