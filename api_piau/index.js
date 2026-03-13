@@ -23,10 +23,14 @@ const tabelaMap = {
 
 // --- ROTA DE LOGIN (DEVE VIR ANTES DAS ROTAS GENÉRICAS) ---
 app.post('/login', async (req, res) => {
-    const { cpf, password } = req.body;
+    let { cpf, password } = req.body;
+    
+    // Remove pontos e traços para garantir que a busca funcione
+    const cpfLimpo = cpf.replace(/\D/g, ''); 
 
     try {
-        const [rows] = await db.query('SELECT * FROM usuario WHERE cpf = ?', [cpf]);
+        // Busca pelo CPF limpo
+        const [rows] = await db.query('SELECT * FROM usuario WHERE cpf = ?', [cpfLimpo]);
         
         if (rows.length === 0) {
             return res.status(401).json({ error: 'Usuário não encontrado.' });
@@ -34,11 +38,17 @@ app.post('/login', async (req, res) => {
 
         const usuario = rows[0];
         
-        // Compara a senha digitada com o hash do banco
+        // O campo no banco é 'senha', mas o que vem do front é 'password'
         const senhaValida = await bcrypt.compare(password, usuario.senha);
         if (!senhaValida) return res.status(401).json({ error: 'Senha incorreta.' });
 
-        res.json({ user: { nome: usuario.nome, perfil: usuario.perfil } });
+        // Retorna os dados para o alert do frontend
+        res.json({ 
+            user: { 
+                nome: usuario.nome, 
+                perfil: usuario.perfil 
+            } 
+        });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

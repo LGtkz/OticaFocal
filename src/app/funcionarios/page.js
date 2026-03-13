@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import './novo-funcionario.css'; 
@@ -21,24 +21,28 @@ export default function NovoFuncionario() {
         perfil: ''
     });
 
-    // 2. Função para atualizar o estado conforme o usuário digita
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        if(user.perfil !== 'Admin') {
+            alert('Acesso negado. Apenas administradores podem acessar esta página.');
+            router.push('/'); 
+        }
+    }, [router]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    // 3. Função para enviar os dados para a API
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Preparação dos dados: convertendo salário para número
         const dadosParaEnviar = {
             ...formData,
             salario: parseFloat(formData.salario.replace('R$', '').replace('.', '').replace(',', '.')) || 0
         };
 
         try {
-            // Chamada para a sua API na porta 3001
             const response = await fetch('http://localhost:3001/usuario', {
                 method: 'POST',
                 headers: {

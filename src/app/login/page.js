@@ -23,7 +23,7 @@ export default function Login() {
             const response = await fetch('http://localhost:3001/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ cpf: cpf, password })
+                body: JSON.stringify({ cpf: cpf, password: password })
             });
 
             const data = await response.json();
@@ -31,7 +31,7 @@ export default function Login() {
             if (response.ok) {
                 alert(`Bem-vindo, ${data.user.nome}!`);
                 localStorage.setItem('user', JSON.stringify(data.user));
-                router.push('/'); // Agora o router está definido e funcionará
+                window.location.href = '/';
             } else {
                 setError(data.error || 'Falha na autenticação');
             }
