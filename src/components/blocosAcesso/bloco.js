@@ -1,10 +1,13 @@
+"use client";
 import "./bloco.css";
 import Image from "next/image";
+import Link from "next/link"; // Importação necessária para navegação
 
 export default function BlocoAcesso() {
     return (
         <div className="bloco-acesso">
-            <div className="bloco-clientes">
+            {/* Cada div agora é envolvida por um Link apontando para a rota respectiva */}
+            <Link href="/clientes" className="bloco-clientes link-acesso">
                 <Image
                     src="/userIcon.svg"
                     alt="Ícone de Clientes"
@@ -12,8 +15,9 @@ export default function BlocoAcesso() {
                     height={32}
                 />
                 <p>Clientes</p>
-            </div>
-            <div className="bloco-produtos">
+            </Link>
+
+            <Link href="/produtos" className="bloco-produtos link-acesso">
                 <Image
                     src="/produtosIcon2.svg"
                     alt="Ícone de Produtos"
@@ -21,8 +25,9 @@ export default function BlocoAcesso() {
                     height={32}
                 />
                 <p>Produtos</p>
-            </div>
-            <div className="bloco-ordem-servico">
+            </Link>
+
+            <Link href="/ordem-servico" className="bloco-ordem-servico link-acesso">
                 <Image
                     src="/osIcon.svg"
                     alt="Ícone de Ordem de Serviço"
@@ -30,19 +35,18 @@ export default function BlocoAcesso() {
                     height={32}
                 />
                 <p>Ordem de Serviço</p>
-            </div>
-            <div className="bloco-vendas">
+            </Link>
+
+            {/* Substituído para a página de Relatórios */}
+            <Link href="/relatorios" className="bloco-vendas link-acesso">
                 <Image
-                    src="/entregasIcon.svg"
-                    alt="Ícone de entregas"
+                    src="/entregasIcon.svg" 
+                    alt="Ícone de Relatórios"
                     width={32}
                     height={32}
                 />
-                <p>Entregas Pendentes</p>
-            </div>
-            
+                <p>Relatórios</p>
+            </Link>
         </div>
-    )
+    );
 }
-
-

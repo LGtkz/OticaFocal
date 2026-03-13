@@ -18,7 +18,9 @@ const tabelaMap = {
     'item_os': 'id_item_os',
     'venda': 'id_venda',
     'vw_vendas_detalhadas': 'id_venda',
-    'pagamento': 'id_pagamento'
+    'pagamento': 'id_pagamento',
+    'vw_relatorio_vendas_funcionario': 'nome',
+    'vw_vendas_grafico_mensal': 'dia'
 };
 
 // --- ROTA DE LOGIN (DEVE VIR ANTES DAS ROTAS GENÉRICAS) ---

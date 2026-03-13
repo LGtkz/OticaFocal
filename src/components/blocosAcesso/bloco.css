@@ -1,75 +1,42 @@
-.bloco-acesso{
+.bloco-acesso {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1.5rem; /* Ajustado para melhor encaixe lateral */
     border-radius: 4px;
-    width: 50%;
+    width: 60%; /* Aumentado levemente para alinhar com os blocos da direita */
 }
 
-.bloco-acesso > div {
-    flex: 0 0 calc(50% - 1rem);
-    max-width: calc(50% - 1rem);
-}
-
-.bloco-clientes {
-    font-size: 12px;
+/* O seletor agora deve mirar nos Links, que são os filhos diretos */
+.bloco-acesso .link-acesso {
+    flex: 1 1 calc(50% - 1rem); /* Permite que os botões cresçam e ocupem 50% da linha */
+    height: 134px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    width: 180px;
-    font-weight: 200;
-    height: 134px;
+    gap: 12px;
     background-color: var(--cor-primaria);
     color: white;
     border-radius: 4px;
+    text-decoration: none;
+    transition: transform 0.2s, background-color 0.2s;
+    cursor: pointer;
 }
 
-.bloco-vendas {
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 180px;
-    font-weight: 200;
-    height: 134px;
-    background-color: var(--cor-primaria);
-    color: white;
-    border-radius: 4px;
+/* Removemos as larguras fixas de 180px para que o flexbox controle o tamanho */
+.bloco-clientes, .bloco-vendas, .bloco-produtos, .bloco-ordem-servico {
+    width: 100% !important; 
+    height: 100% !important;
 }
 
-.bloco-produtos {
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    width: 180px;
-    font-weight: 200;
-    height: 134px;
-    background-color: var(--cor-primaria);
-    color: white;
-    border-radius: 4px;
+.link-acesso:hover {
+    background-color: #2c3240;
+    transform: scale(1.02);
 }
 
-.bloco-ordem-servico {
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 180px;
-    font-weight: 200;
-    height: 134px;
-    background-color: var(--cor-primaria);
+.link-acesso p {
+    margin: 0;
     color: white;
-    border-radius: 4px;
-}   
-
-p{
-    color: var(--text-color);
     font-size: 18px;
     font-weight: 400;
 }
+
