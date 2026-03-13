@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import './novo-os.css';
 import Image from "next/image";
@@ -12,8 +12,29 @@ const inter = Inter({
 
 export default function NovaOS() {
     const router = useRouter();
+    const [vendedores, setVendedores] = useState([]); // Estado para a lista
 
-    // ESTADO GIGANTE PARA ARMAZENAR TODA A O.S.
+    // Mesma lógica de Nova Venda: Busca inicial de dados necessários
+    // Substitua o useEffect antigo por este:
+useEffect(() => {
+    const buscarVendedores = async () => {
+        try {
+            // Ajustado para 'usuario' no singular, como no seu código de Vendas
+            const response = await fetch('http://localhost:3001/usuario');
+            if (response.ok) {
+                const dados = await response.json();
+                // Verificação de array para evitar erros de renderização
+                if (Array.isArray(dados)) {
+                    setVendedores(dados);
+                }
+            }
+        } catch (error) {
+            console.error("Erro ao carregar vendedores:", error);
+        }
+    };
+    buscarVendedores();
+}, []);
+
     const [formData, setFormData] = useState({
         // Dados Principais
         id_cliente: '', // Idealmente, a busca preencheria o ID aqui
@@ -146,11 +167,19 @@ export default function NovaOS() {
 
                     <div className="nos-input-wrapper">
                         <label>Funcionário*</label>
-                        {/* Veja que adicionei o className="nos-input" no select */}
-                        <select name="id_usuario_abertura" className="nos-input" value={formData.id_usuario_abertura} onChange={handleChange} required>
-                            <option value="">Selecione...</option>
-                            <option value="1">Vendedor 1</option>
-                            <option value="2">Vendedor 2</option>
+                        <select 
+                            name="id_usuario_abertura" 
+                            className="nos-input" 
+                            value={formData.id_usuario_abertura} 
+                            onChange={handleChange} 
+                            required
+                        >
+                            <option value="">Selecione o vendedor</option>
+                            {vendedores.map((vendedor) => (
+                                <option key={vendedor.id_usuario} value={vendedor.id_usuario}>
+                                    {vendedor.nome}
+                                </option>
+                            ))}
                         </select>
                     </div>
 

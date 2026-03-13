@@ -1,0 +1,79 @@
+.rel-container {
+    padding: 30px 40px;
+    background-color: #f8fafc;
+    min-height: 100vh;
+}
+
+.relatorio-header {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 15px;
+}
+
+.relatorio-header h1 {
+    font-size: 32px;
+    color: #111827 !important;
+}
+
+.rel-titulo-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rel-barra-azul {
+    width: 6px;
+    height: 25px;
+    background-color: #3b82f6;
+    margin-right: 12px;
+    border-radius: 4px;
+}
+
+.rel-card {
+    background: #ffffff !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    overflow: visible; /* Mudamos para visible para evitar cortes */
+    width: 100%;
+}
+
+.rel-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    display: table; /* Força o comportamento de tabela */
+}
+
+.rel-table th {
+    background-color: #374151;
+    color: #ffffff !important;
+    padding: 15px 25px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+/* O segredo está aqui: garantimos que o TR e o TD tenham altura e visibilidade */
+.rel-table tr {
+    display: table-row;
+    visibility: visible !important;
+}
+
+.rel-table td {
+    display: table-cell;
+    padding: 18px 25px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 16px;
+    line-height: 1.5;
+    vertical-align: middle;
+}
+
+/* Alinhamentos */
+.txt-left { text-align: left !important; }
+.txt-center { text-align: center !important; }
+.txt-right { text-align: right !important; }
+
+.rel-table tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+

@@ -2,7 +2,7 @@
 
 import "./novo-vendas.css";
 import { Inter } from "next/font/google";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,6 +22,24 @@ export default function Vendas() {
   const [qtParcela, setQtParcela] = useState("1");
   const [dataPagamento, setDataPagamento] = useState("");
 
+// Estado para guardar os funcionários da API
+  const [usuarios, setUsuarios] = useState([]);
+
+  // Busca os funcionários no banco ao carregar a página
+  useEffect(() => {
+    async function carregarFuncionarios() {
+      try {
+        const response = await fetch('http://localhost:3001/usuario');
+        const dados = await response.json();
+        if (Array.isArray(dados)) {
+          setUsuarios(dados);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar funcionários:", error);
+      }
+    }
+    carregarFuncionarios();
+  }, []);
 
   const hojeISO = useMemo(() => {
     const d = new Date();
@@ -201,12 +219,16 @@ async function handleSalvar() {
               onChange={(e) => {
                 setFuncionario(e.target.value);
                 setErros((prev) => ({ ...prev, funcionario: "" }));
-              } }
+              }}
             >
-              <option value="">Selecione...</option>
-              <option value="1">Vendedor 1</option>
-              <option value="2">Vendedor 2</option>
-            </select>
+              <option value="">Selecione um funcionário...</option>
+              {/* Aqui o código percorre todos os usuários do seu banco */}
+              {usuarios.map((user) => (
+                <option key={user.id_usuario} value={user.id_usuario}>
+                  {user.nome}
+                </option>
+              ))}
+          </select>
 
             {erros.funcionario && <p className="msg-erro">{erros.funcionario}</p>}
           </div>
